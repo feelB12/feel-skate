@@ -141,24 +141,6 @@
                                 <h4 class="pad5">Skateparks</h4>
                         </a>
                     </div>
-                    <div class="btn">
-                        <a id="link2" class="btn" href="{{ path('skatepark_create', {"id": skatepark.id}) }}">
-                            <img class="btn" src="{{ asset('icon/add-file-green.png') }}" alt="Créer un skatepark"><br>
-                                <h4 class="pad5">Créer</h4>
-                        </a>
-                    </div>
-                    <div class="btn" >
-                        <a id="link3" class="btn" href="{{ path('skatepark_update', {"id": skatepark.id}) }}">
-                            <img class="btn" src="{{ asset('icon/edit-pink.png') }}" alt="Modifier le skatepark"><br>
-                                <h4 class="pad5">Modifier</h4>
-                        </a>
-                    </div>
-                    <div class="btn" >
-                        <a id="link4"class="btn" href="{{ path('skatepark_delete', {"id": skatepark.id}) }}">
-                            <img class="btn" src="{{ asset('icon/delete-orange.png') }}" alt="Supprimer le skatepark"><br>
-                                <h4 class="pad5">Supprimer</h4>
-                        </a>
-                    </div>
                 </div>
                 <div class="justifyBox">
                      <p>{{ skatepark.description }}{{ skatepark.description }}</p>

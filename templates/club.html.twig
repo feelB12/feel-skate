@@ -141,24 +141,6 @@
                                 <h4 class="pad5">Clubs</h4>
                         </a>
                     </div>
-                    <div class="btn">
-                        <a id="link2" class="btn" href="{{ path('club_create', {"id": club.id}) }}">
-                            <img class="btn" src="{{ asset('icon/add-file-green.png') }}" alt="Créer un club"><br>
-                                <h4 class="pad5">Créer</h4>
-                        </a>
-                    </div>
-                    <div class="btn" >
-                        <a id="link3" class="btn" href="{{ path('club_update', {"id": club.id}) }}">
-                            <img class="btn" src="{{ asset('icon/edit-pink.png') }}" alt="Modifier le club"><br>
-                                <h4 class="pad5">Modifier</h4>
-                        </a>
-                    </div>
-                    <div class="btn" >
-                        <a id="link4"class="btn" href="{{ path('club_delete', {"id": club.id}) }}">
-                            <img class="btn" src="{{ asset('icon/delete-orange.png') }}" alt="Supprimer le club"><br>
-                                <h4 class="pad5">Supprimer</h4>
-                        </a>
-                    </div>
                 </div>
                 <div class="justifyBox">
                      <p>{{ club.description }}{{ club.description }}</p>

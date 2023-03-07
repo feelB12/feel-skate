@@ -1,4 +1,4 @@
-{% extends "base.html.twig" %}
+{% extends "front/base.html.twig" %}
 
 {% block metatitle %}
     Clubs | Skateboard Social Club
@@ -13,12 +13,12 @@
     <section class="section">
         <div id="ico">
             <div class="element">
-                <a href="{{ path('clubs') }}">
+                <a href="{{ path('front_clubs') }}">
                     <img class="logoBig" src="{{ asset('icon/clubs_titre.png') }}" alt="Club">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('clubs') }}">
+                <a href="{{ path('front_clubs') }}">
                     <img class="logoBig" src="{{ asset('icon/club.png') }}" alt="Club-icon">
                 </a>
             </div>
@@ -26,7 +26,7 @@
         <div class="line"></div>
         <div class="cadre">
             {% block search %}
-                <form action="{{ path('search_clubs') }}">
+                <form action="{{ path('front_search_clubs') }}">
                     <div id="divSearch" class="conteneur">
                         <div class="enfant">
                             <button type="submit"> 
@@ -71,25 +71,25 @@
                 
                 <div class="box">
                     <div class="btn" >
-                        <a href="{{ path('club', {"id": club.id}) }}">
+                        <a href="{{ path('front_club', {"id": club.id}) }}">
                             <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir le club"><br>
                                 <h4 class="pad5">Voir</h4>
                         </a>
                     </div>
                     <div class="btn">
-                        <a class="btn" href="{{ path('club_create', {"id": club.id}) }}">
+                        <a class="btn" href="{{ path('front_club_create', {"id": club.id}) }}">
                             <img class="btn" src="{{ asset('icon/add-file-green.png') }}" alt="Créer un club"><br>
                                 <h4 class="pad5">Créer</h4>
                         </a>
                     </div>
                     <div class="btn" >
-                        <a class="btn" href="{{ path('club_update', {"id": club.id}) }}">
+                        <a class="btn" href="{{ path('front_club_update', {"id": club.id}) }}">
                             <img class="btn" src="{{ asset('icon/edit-pink.png') }}" alt="Modifier un club"><br>
                                 <h4 class="pad5">Modifier</h4>
                         </a>
                     </div>
                     <div class="btn" >
-                        <a class="btn" href="{{ path('club_delete', {"id": club.id}) }}">
+                        <a class="btn" href="{{ path('front_club_delete', {"id": club.id}) }}">
                             <img class="btn" src="{{ asset('icon/delete-orange.png') }}" alt="Supprimer le club"><br>
                                 <h4 class="pad5">Supprimer</h4>
                         </a>

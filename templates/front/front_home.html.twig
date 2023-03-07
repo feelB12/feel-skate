@@ -1,4 +1,4 @@
-{% extends "base.html.twig" %}
+{% extends "front/base.html.twig" %}
 
 {% block metatitle %}
      Accueil | Skateboard Social Club
@@ -13,33 +13,33 @@
     <section class="section">
         <div id="ico">
             <div class="element">
-                <a href="{{ path('shops') }}">
+                <a href="{{ path('front_shops') }}">
                     <img class="logoBig" src="{{ asset('icon/shops_titre.png') }}" alt="Shop">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('shops') }}">
+                <a href="{{ path('front_shops') }}">
                     <img class="logoBig" src="{{ asset('icon/shops.png') }}" alt="Shop-icon">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('sessions') }}">
-                    <img class="title logoBig" href="{{ path('sessions') }}" src="{{ asset('icon/sessions_titre.png') }}" alt="Shop">
+                <a href="{{ path('front_sessions') }}">
+                    <img class="title logoBig" href="{{ path('front_sessions') }}" src="{{ asset('icon/sessions_titre.png') }}" alt="Shop">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('sessions') }}">
-                    <img class="title logoBig" href="{{ path('sessions') }}" src="{{ asset('icon/session.png') }}" alt="Shop-icon">
+                <a href="{{ path('front_sessions') }}">
+                    <img class="title logoBig" href="{{ path('front_sessions') }}" src="{{ asset('icon/session.png') }}" alt="Shop-icon">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('clubs') }}">
-                    <img class="title logoBig" href="{{ path('clubs') }}" src="{{ asset('icon/clubs_titre.png') }}" alt="Shop">
+                <a href="{{ path('front_clubs') }}">
+                    <img class="title logoBig" href="{{ path('front_clubs') }}" src="{{ asset('icon/clubs_titre.png') }}" alt="Shop">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('clubs') }}">
-                    <img class="title logoBig" href="{{ path('clubs') }}" src="{{ asset('icon/club.png') }}" alt="Shop-icon">
+                <a href="{{ path('front_clubs') }}">
+                    <img class="title logoBig" href="{{ path('front_clubs') }}" src="{{ asset('icon/club.png') }}" alt="Shop-icon">
                 </a>
             </div>
             <div class="element">

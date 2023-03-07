@@ -141,24 +141,6 @@
                                 <h4 class="pad5">Sessions</h4>
                         </a>
                     </div>
-                    <div class="btn">
-                        <a id="link2" class="btn" href="{{ path('session_create', {"id": session.id}) }}">
-                            <img class="btn" src="{{ asset('icon/add-file-green.png') }}" alt="Créer une session"><br>
-                                <h4 class="pad5">Créer</h4>
-                        </a>
-                    </div>
-                    <div class="btn" >
-                        <a id="link3" class="btn" href="{{ path('session_update', {"id": session.id}) }}">
-                            <img class="btn" src="{{ asset('icon/edit-pink.png') }}" alt="Modifier la session"><br>
-                                <h4 class="pad5">Modifier</h4>
-                        </a>
-                    </div>
-                    <div class="btn" >
-                        <a id="link4"class="btn" href="{{ path('session_delete', {"id": session.id}) }}">
-                            <img class="btn" src="{{ asset('icon/delete-orange.png') }}" alt="Supprimer la session"><br>
-                                <h4 class="pad5">Supprimer</h4>
-                        </a>
-                    </div>
                 </div>
                 <div class="justifyBox">
                      <p>{{ session.description }}{{ session.description }}</p>

@@ -1,7 +1,7 @@
-{% extends "front/base.html.twig" %}
+{% extends "base.html.twig" %}
 
 {% block metatitle %}
-    Admin | Accueil | Skateboard Social Club
+     Accueil | Skateboard Social Club
 {% endblock metatitle %}
 
 {% block stylesheets %}
@@ -11,51 +11,9 @@
 
 {% block main %}
     <section class="section">
-        <div id="ico">
-            <div class="element">
-                <a href="{{ path('admin_shops') }}">
-                    <img class="logoBig" src="{{ asset('icon/shops_titre.png') }}" alt="Shop">
-                </a>
-            </div>
-            <div class="element">
-                <a href="{{ path('admin_shops') }}">
-                    <img class="logoBig" src="{{ asset('icon/shops.png') }}" alt="Shop-icon">
-                </a>
-            </div>
-            <div class="element">
-                <a href="{{ path('admin_sessions') }}">
-                    <img class="title logoBig" href="{{ path('admin_sessions') }}" src="{{ asset('icon/sessions_titre.png') }}" alt="Shop">
-                </a>
-            </div>
-            <div class="element">
-                <a href="{{ path('admin_sessions') }}">
-                    <img class="title logoBig" href="{{ path('admin_sessions') }}" src="{{ asset('icon/session.png') }}" alt="Shop-icon">
-                </a>
-            </div>
-            <div class="element">
-                <a href="{{ path('admin_clubs') }}">
-                    <img class="title logoBig" href="{{ path('admin_clubs') }}" src="{{ asset('icon/clubs_titre.png') }}" alt="Shop">
-                </a>
-            </div>
-            <div class="element">
-                <a href="{{ path('admin_clubs') }}">
-                    <img class="title logoBig" href="{{ path('admin_clubs') }}" src="{{ asset('icon/club.png') }}" alt="Shop-icon">
-                </a>
-            </div>
-            <div class="element">
-                <a href="{{ path('admin_skateparks') }}">
-                    <img class="title logoBig" href="{{ path('admin_skateparks') }}" src="{{ asset('icon/skateparks_titre.png') }}" alt="Shop">
-                </a>
-            </div>
-            <div class="element">
-                <a href="{{ path('admin_skateparks') }}">
-                    <img class="title logoBig" href="{{ path('admin_skateparks') }}" src="{{ asset('icon/skateparks.png') }}" alt="Shop-icon">
-                </a>
-            </div>
-        </div>
         <div class="cadre">
             {% block search %}
-                <form action="{{ path('admin_search_shops') }}">
+                <form action="{{ path('search') }}">
                     <div id="divSearch" class="conteneur">
                         <div class="enfant">
                             <button type="submit"> 
@@ -70,7 +28,174 @@
             {% endblock search %}
         </div>
     </section>
-
+    <section class="section">
+        <div id="ico">
+            <div class="element">
+                <a href="{{ path('shops') }}">
+                    <img class="logoBig" src="{{ asset('icon/shops_titre.png') }}" alt="Shop">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('shops') }}">
+                    <img class="logoBig" src="{{ asset('icon/shops.png') }}" alt="Shop-icon">
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+       <h3 class="go"> Les derniers shops</h3>
+          <div class="line"></div>
+            {% for shop in shops %}
+                <div class="of">
+                    <div class="card-t">
+                        <h1>{{ shop.title }}</h1>
+                    </div>
+                    <div class="tof">
+                        <b><img class="img-c resp" src="{{ asset('uploads/cover/'~shop.coverFilename) }}" alt="photo-shop"></b>
+                    </div>
+                    <div class="bTof" alt="banner-address">
+                        <h2>{{ shop.address}} {{ shop.town}}</h2>
+                    </div>
+                    {#             {% if skatepark.club %} #}
+                    {#                        <h3>{{ skatepark.club.town }} {{ skatepark.club.area }}</h3> #}
+                    {#                    {% endif %} #}
+                    <div class="box">
+                        <div class="btn" >
+                            <a href="{{ path('shop', {"id": shop.id}) }}">
+                                <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir le shop"><br>
+                                    <h4 class="pad5">Voir le shop</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </section>
+    <section class="section"> 
+        <div id="ico">
+            <div class="element">
+                <a href="{{ path('sessions') }}">
+                    <img class="title logoBig" href="{{ path('sessions') }}" src="{{ asset('icon/sessions_titre.png') }}" alt="Shop">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('sessions') }}">
+                    <img class="title logoBig" href="{{ path('sessions') }}" src="{{ asset('icon/session.png') }}" alt="Shop-icon">
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+            <h3 class="go"> Les dernières sessions</h3>
+            <div class="line"></div>
+            {% for session in sessions %}
+                <div class="of">
+                    <div class="card-t">
+                        <h1>{{ session.title }}</h1>
+                    </div>
+                    <div class="tof">
+                        <b><img class="img-c resp" src="{{ asset('uploads/cover/'~session.coverFilename) }}" alt="photo-session"></b>
+                    </div>
+                    <div class="bTof" alt="banner-address">
+                        <h2>{{ session.address}} {{ session.town}}</h2>
+                    </div>
+                            {#             {% if skatepark.club %} #}
+                            {#                        <h3>{{ skatepark.club.town }} {{ skatepark.club.area }}</h3> #}
+                            {#                    {% endif %} #}
+                    <div class="box">
+                        <div class="btn" >
+                            <a href="{{ path('session', {"id": session.id}) }}">
+                                <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir la session"><br>
+                                    <h4 class="pad5">Voir la Session</h4>
+                            </a>
+                        </div>    
+                    </div>
+                </div>
+            {% endfor %}
+    </section>
+    <section class="section">
+        <div id="ico">
+            <div class="element">
+                <a href="{{ path('clubs') }}">
+                    <img class="title logoBig" href="{{ path('clubs') }}" src="{{ asset('icon/clubs_titre.png') }}" alt="Club">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('clubs') }}">
+                    <img class="title logoBig" href="{{ path('clubs') }}" src="{{ asset('icon/club.png') }}" alt="Club-icon">
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <h3 class="go">Les derniers clubs</h3>
+            <div class="line"></div>
+            {% for club in clubs %}
+                <div class="of">
+                    <div class="card-t">
+                        <h1>{{ club.title }}</h1>
+                    </div>
+                    <div class="tof">
+                        <b><img class="img-c resp" src="{{ asset('uploads/cover/'~club.coverFilename) }}" alt="photo-club"></b>
+                    </div>
+                    <div class="bTof" alt="banner-address">
+                        <h2>{{ club.address}} {{ club.town}}</h2>
+                    </div>
+                            {#             {% if skatepark.club %} #}
+                            {#                        <h3>{{ skatepark.club.town }} {{ skatepark.club.area }}</h3> #}
+                            {#                    {% endif %} #}
+                    <div class="box">
+                        <div class="btn" >
+                            <a href="{{ path('club', {"id": club.id}) }}">
+                                <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir le club"><br>
+                                    <h4 class="pad5">Voir le club</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </section>
+    <section class="section">
+        <div id="ico">
+            <div class="element">
+                <a href="{{ path('skateparks') }}">
+                    <img class="title logoBig" href="{{ path('skateparks') }}" src="{{ asset('icon/skateparks_titre.png') }}" alt="Shop">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('skateparks') }}">
+                    <img class="title logoBig" href="{{ path('skateparks') }}" src="{{ asset('icon/skateparks.png') }}" alt="Shop-icon">
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <h3 class="go">Les derniers skateparks</h3>
+            <div class="line"></div>
+            {% for skatepark in skateparks %}
+                <div class="of">
+                    <div class="card-t">
+                        <h1>{{ skatepark.title }}</h1>
+                    </div>
+                    <div class="tof">
+                        <b><img class="img-c resp" src="{{ asset('uploads/cover/'~skatepark.coverFilename) }}" alt="photo-skatepark"></b>
+                    </div>
+                    <div class="bTof" alt="banner-address">
+                        <h2>{{ skatepark.address}} {{ skatepark.town}}</h2>
+                    </div>
+                            {#             {% if skatepark.club %} #}
+                            {#                        <h3>{{ skatepark.club.town }} {{ skatepark.club.area }}</h3> #}
+                            {#                    {% endif %} #}
+                    <div class="box">
+                        <div class="btn" >
+                            <a href="{{ path('skatepark', {"id": skatepark.id}) }}">
+                                <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir le skatepark"><br>
+                                    <h4 class="pad5">Voir le skatepark</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </section>
     <section class="section">
     <div class="card-detail">
             <div class="card-title"><h1>H1</h1><br></div>

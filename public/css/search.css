@@ -1,0 +1,60 @@
+
+#searchToogle  {
+    display:flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+	align-items: flex-end;
+}
+.searchToogle {
+    display:flex;
+
+}
+.searchToogle div {
+    display:flex;	
+}
+
+.container {
+	/* height:10vh;*/
+	text-align:center;
+} 
+.search-form {
+	right: 5vh;
+	top: 10vh;
+}
+
+ .search-field {
+	background-color: transparent;
+	background-image: url("/public/icon/loupe.png");
+	background-position: 5px  center;
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	border: none;
+	cursor: pointer;
+	height: 40px;
+	margin: 3px 0;
+	padding: 0 0 0 34px;
+	position: relative;
+	-webkit-transition: width 400ms ease, background 400ms ease;
+	transition:         width 400ms ease, background 400ms ease;
+	width:0px;
+   cursor: pointer;
+}
+
+.search-field:focus {
+	background-color: #000;
+	border: 2px solid #c3c0ab;
+	cursor: text;
+	outline: 0;
+	width: 250px;
+  color:#fff;
+}
+.search-form
+.search-submit { 
+display:none;
+}
+
+#divSearch {
+	display: flex;
+	justify-content: center;
+    align-items: baseline;
+}

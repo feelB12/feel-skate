@@ -1,0 +1,224 @@
+/* Base */
+
+.resp {
+    width: 100%;
+    height: auto;
+}
+
+.border {
+    border: solid 1px rgb(233, 19, 179)
+}
+
+.flex {
+    display: flex;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+nav {
+    min-height: 5vh;
+    object-fit: contain;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    position: sticky;
+    background-color: black;
+    top: 0;
+}
+
+.left {
+    float: left;
+}
+.logoTop {
+    height: 5vh;
+    float: left;
+}
+img {
+    display: inline-block;
+    max-width: 100%;
+    min-height: 5vh;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 50px;
+    padding-inline-start: 40px;
+}
+li {
+    align-items: center;
+    height: 5vh;
+    line-height: 5vh;
+}
+.cont {
+    flex-direction: column;
+    /* height: 200px; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center;*/
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    height: 5vh;
+    background-color: black;
+    z-index: 2000;
+}
+.footer {
+    position: sticky;
+    display: flex;
+    height: 10vh;
+    line-height: 10vh;
+    background-color: black;
+    z-index: 2000;
+}
+
+/***************************
+**    Main
+ **************************/
+main {
+    padding: 0.5rem 1rem;
+    width: 80%;
+    margin: 50px auto;
+}
+.top {
+    border: 2px solid saddlebrown;
+    object-fit: contain;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.arrow {
+    transform: rotate(-90deg);
+}
+
+.line {
+    height: 5vh;
+    border: 2px solid ;
+    border-color: grey;
+}
+
+.card-text {
+    max-width: 800px;
+    max-height: 600px;
+}
+
+form{
+    margin-bottom: 2%;
+}
+.text-input,#s,input[type=text],input[type=password],textarea {
+    clear: both;
+    border: 1px solid  #ccc;
+    margin-bottom: 5px;
+    padding: 7px;
+    color:   #555;
+    font-size: 12px; /* Attention, IE n'est pas compatible */
+    border-radius: 10px;			/* instruction standard */
+    -moz-border-radius: 10px;		/* spécifique Mozilla */
+    -webkit-border-radius: 10px;		/* spécifique WebKit (Safari, Chrome etc.) */
+    -opera-border-radius: 10px;		/* spécifique Opera */
+  }
+  #s {
+    width: auto;
+    margin-top: 3px;
+  }
+  
+  #searchsubmit,button,.comment-submit,input[type="submit"] {
+    clear: both;
+    width: auto;
+    height: auto;
+    line-height: 18px;
+    background-image: url("/public/icon/loupe.png") right repeat-x !important;
+    
+    border: 1px solid   red;
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    text-shadow: 0 1px 0 
+  rgba( 255, 255, 255, 0.45 ) !important;
+    min-width: 0;
+  }
+
+/********************************
+* Breakpoints
+*********************************/
+@media screen and (min-width: 576px) {
+    .carousel-item {
+        flex-basis: 300px;
+    }
+    .logoBig {
+        height: 5vh;
+    }
+}
+
+@media screen and (min-width: 992px) {
+
+    body,
+    button,
+    input,
+    select,
+    optgroup,
+    textarea {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 2.75rem;
+    }
+    .logoBig {
+        height: 7vh;
+    }
+    .carousel-item {
+        flex-basis: 325px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .logoBig {
+        height: 7vh;
+    }
+    .carousel-item {
+        flex-basis: 450px;
+    }
+}
+@media screen and (min-width: 1600px) {
+
+    body,
+    button,
+    input,
+    select,
+    optgroup,
+    textarea {
+        font-size: 1.25rem;
+    }
+    .logoBig {
+        height: 10vh;
+    }
+    
+}

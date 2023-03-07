@@ -38,7 +38,7 @@
                     </div>
                 </li>
                 <li class="container">
-                    <a href="# {{ path('login') }}" class="logo" type="submit">
+                    <a href="# {{ path('home') }}" class="logo" type="submit">
                         <img src="{{ asset('icon/login.png') }}" alt="login" class="logo" type="submit">
                     </a>
                 </li>
@@ -70,4 +70,4 @@
         {% block main %}
         {% endblock main %}
     </main>
-{% include 'footer.html.twig' %}
+{% include 'front/_footer.html.twig' %}

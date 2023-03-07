@@ -1,0 +1,609 @@
+*, body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #CDCDCD;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+/* vietnamese */
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/bevietnampro/v8/QdVNSTAyLFyeg_IDWvOJmVES_HRUNXcSYJIheh6QaA.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/bevietnampro/v8/QdVNSTAyLFyeg_IDWvOJmVES_HRUNXYSYJIheh6QaA.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/bevietnampro/v8/QdVNSTAyLFyeg_IDWvOJmVES_HRUNXgSYJIheh4.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Balise */
+
+main {
+    width: 100%;
+    display: block;
+    padding: 0.5rem 1rem;
+    margin-top: 5vh;
+}
+h1 {
+    display: flex;
+    color:#eb5d00;
+}  
+
+h3 {
+    display: flex;
+    width: 80%;
+}
+h4 {
+    object-fit: contain;
+    margin-bottom: 5vh;
+}
+h5 {
+    font-size: 1.2rem;
+}
+nav {
+    top: 0;
+    object-fit: contain;
+    width: 100%;
+}
+ul {
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    margin-inline-start: 0px;    
+}
+article {
+    margin-top: 2vh;
+}
+section {
+    padding-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+img {
+    min-height: 5vh;
+    object-fit: contain;
+}
+form{
+    margin-bottom: 2%;
+}
+.table-flex{
+    display:flex;
+}
+table {
+    line-height: normal;
+    padding: 2%;
+    font-size: 1rem;
+}
+
+/* Id */
+
+#logo {
+   display: flex;
+}
+#ico {
+    display:flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+#tm {
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    text-align: justify;
+}
+#tmbk {
+    display: flex;
+    position:relative;
+    align-items: center;
+    flex-direction: row;
+    justify-items: stretch;
+    text-align: center;
+}
+#abs1 {
+    background-color: #FFFFFF;
+    left: 10px;
+}
+#abs2 {
+    background-color: #FFFFFF;
+    right: 10px;
+}
+#abs3 {
+    bottom: 4%;
+    right: 50%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#abs4 {
+    bottom: 1%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#abs5 {
+    display: inline-flex;
+    object-fit: cover;
+    background-color: #fb1bff;
+    color: #FFFFFF;
+    height:auto;
+    border:  solid 2px #fb1bff;
+}
+#abs6 {
+    align-items: center;
+    bottom: 10px;
+}
+#sta1 {
+    width: border-box;
+}
+
+/* Class */
+
+.logo {
+    height: 5vh;
+}
+form {
+    margin-bottom: 2%;
+}
+.adm-btn {
+    display: flex;
+}
+.adm-btn li h4 {
+    display: flex;
+}
+.adm-btn h4 {
+    font-size: 0.8rem;
+    display: flex;
+}
+.static {
+    position: static;
+}
+.absolute {
+    object-fit: cover;
+    position: absolute;
+    opacity: 0.9;
+}
+.backImage
+{
+    border: solid 1px darkblue;
+}
+.media
+{
+    display: inline;
+}
+.media2
+{
+    display: flex;
+}
+.top {
+    border: 2px solid saddlebrown;
+    object-fit: contain;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.arrow {
+    transform: rotate(-90deg);
+}
+.arrow-left {
+    position: static;
+    max-width: 5vh;
+    transform: rotate(180deg);
+    border: solid 2px cadetblue;
+}
+.arrow-right {
+    position: static;
+    max-width: 5vh;
+    border: solid 2px cadetblue;
+}
+.border {
+    width:60%;
+}
+.relative {
+    position: relative;
+}
+.absol {
+    position: absolute;
+}
+.icon {
+    width: 5vh;
+    height: auto;
+}
+.right {
+    float: right;
+}
+.date {
+    padding-top: 2rem;
+}
+
+/***********************
+// flexbox
+************************/
+
+.flex {
+    display: flex;
+}
+.justify-between {
+    justify-content: space-around;
+}
+.justify-center {
+    justify-content: center;
+}
+.align-center {
+    align-items: center;
+}
+.fdr {
+    flex-direction: row;
+    width: 25%;
+    margin: auto;
+    height: auto;
+}
+label {
+    display: flex;
+    padding: 5%;
+}
+.pad5 {
+    visibility: visible;
+}
+#link1 {
+    color:#385CFF;
+}
+#link2 {
+    color:#4fb16a;
+}
+#link3 {
+    color:#fb1bff;
+}
+#link4 {
+    color:#eb5d00;
+}
+.w40 {
+    width: 40%;
+}
+.w30 {
+    width: 30%;
+}
+.top20 {
+    margin-top: 20%;
+}
+
+/************************
+** Caroussel
+************************/
+
+.indicators {
+    display: flex;
+    justify-content: space-between;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20%;
+    top:80%;
+}
+.indicators li {
+    display:flex;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color:#ffffff;
+    position: relative;
+    margin-bottom: 2rem;
+}
+.indicators li::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: solid 1px #CDCDCD;
+}
+
+.logoBig {
+    height: 5vh;
+}
+.section {
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+}
+.icon {
+    display:flex;
+}
+.homeElement{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.element {
+    display:flex;
+}
+.cadre {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center ;
+    border: 2px solid rgb(182, 182, 182);
+    padding-top: 2%;
+    margin-top: 5%;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-bottom: 2rem;
+}
+.conteneur{
+    display:flex;
+    justify-content: space-around; 
+  }
+.enfant {
+    display:flex;
+}
+.book-detail {
+    text-align: center;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.detail {
+    top: 2%;
+    margin: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.justifyBox {
+    position: relative;
+    padding: 5%;
+    display: flex;
+    align-items: start;
+}
+.list {
+    height: 50px;
+    right: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+}
+.go {
+    padding: 1rem;
+    margin-left: 15%;
+}
+.line {
+    margin-top: 2rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border: 2px solid rgb(182, 182, 182);
+}
+.card-text {
+    max-width: 100%;
+}
+.card-title h1{
+    display:flex;
+    color: white;
+    padding:1rem;
+}
+.card-title h2{
+    display:flex;
+    justify-content: flex-start;
+}
+.card-detail{
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    max-width:80%;
+    max-height:80px;
+    z-index:2;
+    font-size:2rem;
+    background-color:#ebd000;
+}
+.card-address{
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    max-width:80%;
+    max-height:80px;
+    z-index:2;
+    font-size:1,5rem;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-text h2, h3 {
+    text-align: center;
+}
+.card h2 {
+    padding-top: 6rem;
+}
+.card-t {
+    margin-left: 3rem;
+    margin-right: 3rem;
+    padding: 2rem;
+}
+.card-text h3 {
+    font-weight: lighter;
+}
+.card-map{
+    padding-top: 1rem;  
+}
+.box {
+    padding:1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+.btn{
+    height:100px;
+    width:100px;
+    margin-left: 1%;
+    margin-right: 1%;
+    object-fit: contain;
+}
+.top {
+    border: 2px solid saddlebrown;
+    object-fit: contain;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.search {
+    display: flex;
+    align-items: baseline ;
+}
+.ligne{
+    flex-direction: row; /*Axe principal = axe horizontal*/
+}
+.colonne{
+    flex-direction: column; /*Axe principal = axe vertical*/
+}
+.left {
+    float: left;
+}
+.image-session
+{
+    display: flex;
+}
+.img-c {
+    display: inline-block;
+    max-width: 80%;
+    min-height: 5vh;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+}
+.img-card {
+    display: inline-block;
+    max-width: 100%;
+    min-height: 5vh;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+.resp {
+    width: 100%;
+    height: auto;
+}
+
+.of {
+    top:5%;
+    position:relative;
+    width:100%;
+    height:100%;
+}
+.tof {
+    z-index:1;
+    width:100%;
+}
+.bTof {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: -100px;
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100px;
+    z-index:2;
+    font-size:2rem;
+    color: honeydew;
+    background-color: blue;
+}
+
+/********************************
+* Breakpoints
+*********************************/
+
+@media screen and (min-width: 576px) {
+    .carousel-item {
+        flex-basis: 300px;
+    }
+    .logoBig {
+        height: 5vh;
+    }
+    .indicators {
+        top:85%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+
+    body,
+    button,
+    input,
+    select,
+    optgroup,
+    textarea {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 2.75rem;
+    }
+    .logoBig {
+        height: 7vh;
+    }
+    .carousel-item {
+        flex-basis: 325px;
+    }
+    .indicators {
+        top:90%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .logoBig {
+        height: 10vh;
+    }
+    .carousel-item {
+        flex-basis: 450px;
+    }
+    .indicators {
+        top:90%;
+    }
+}
+@media screen and (min-width: 1600px) {
+
+    body,
+    button,
+    input,
+    select,
+    optgroup,
+    textarea {
+        font-size: 1.25rem;
+    }
+    .logoBig {
+        height: 15vh;
+    }
+    .indicators {
+        top:90%;
+    }
+}
