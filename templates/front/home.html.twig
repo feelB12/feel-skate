@@ -1,0 +1,87 @@
+{% extends "base.html.twig" %}
+
+{% block metatitle %}
+     Accueil | Skateboard Social Club
+{% endblock metatitle %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block main %}
+    <section class="section">
+        <div id="ico">
+            <div class="element">
+                <a href="{{ path('shops') }}">
+                    <img class="logoBig" src="{{ asset('icon/shops_titre.png') }}" alt="Shop">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('shops') }}">
+                    <img class="logoBig" src="{{ asset('icon/shops.png') }}" alt="Shop-icon">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('sessions') }}">
+                    <img class="title logoBig" href="{{ path('sessions') }}" src="{{ asset('icon/sessions_titre.png') }}" alt="Shop">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('sessions') }}">
+                    <img class="title logoBig" href="{{ path('sessions') }}" src="{{ asset('icon/session.png') }}" alt="Shop-icon">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('clubs') }}">
+                    <img class="title logoBig" href="{{ path('clubs') }}" src="{{ asset('icon/clubs_titre.png') }}" alt="Shop">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('clubs') }}">
+                    <img class="title logoBig" href="{{ path('clubs') }}" src="{{ asset('icon/club.png') }}" alt="Shop-icon">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('skateparks') }}">
+                    <img class="title logoBig" href="{{ path('skateparks') }}" src="{{ asset('icon/skateparks_titre.png') }}" alt="Shop">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('skateparks') }}">
+                    <img class="title logoBig" href="{{ path('skateparks') }}" src="{{ asset('icon/skateparks.png') }}" alt="Shop-icon">
+                </a>
+            </div>
+        </div>
+        <div class="cadre">
+            {% block search %}
+                <form action="{{ path('search_shops') }}">
+                    <div id="divSearch" class="conteneur">
+                        <div class="enfant">
+                            <button type="submit"> 
+                                <label for="userId">
+                                    <img class="logo icon" src="{{ asset('icon/loupe.png') }}" alt="loupe">
+                                </label>
+                            </button>
+                            <input type="text" id="userId" name="query" placeholder="Ville, Code postal">
+                        </div>
+                    </div>
+                </form>
+            {% endblock search %}
+        </div>
+    </section>
+
+    <section class="section">
+    <div class="card-detail">
+            <div class="card-title"><h1>H1</h1><br></div>
+        </div>
+    </section>
+
+    <section class="">
+        <div class="line"></div>
+        
+        <article class="card-address">
+            <div class="card-title"><h2>H2</h2></div>
+        </article>
+    </section>
+{% endblock main %}
