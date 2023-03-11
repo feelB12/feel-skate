@@ -1,0 +1,57 @@
+{% extends "admin/base.html.twig" %}
+
+{% block metatitle %}
+    Créer un Shop| Skateboard Social Club
+{% endblock metatitle %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block main %}
+    <section class="section">
+        <div class="detail">
+            <div class="justify-between flex fdr">
+                <div class="flex">
+                    {{ form(shopForm)}}
+                    {{ form_start(shopForm) }}
+
+                    {{ form_label(shopForm.title, 'titre', {
+                        'label_attr': {
+                            'class': 'testLabelClass'
+                        }
+                    }) }}
+
+                    {{ form_widget(shopForm.title, {
+                        'attr': {
+                            'class': 'testClass'
+                        }
+                    }) }}
+
+                    {{ form_label(shopForm.description) }}
+                    {{ form_widget(clubForm.description) }}
+
+                    {{ form_label(shopForm.address) }}
+                    {{ form_widget(shopForm.address) }}
+
+                    {{ form_label(cshoporm.zippcode) }}
+                    {{ form_widget(shopForm.zippcode) }}
+
+                    {{ form_label(shopForm.town) }}
+                    {{ form_widget(shopForm.town) }}
+
+                    {{ form_label(shopForm.area) }}
+                    {{ form_widget(shopForm.area) }}
+
+                    {{ form_label(shopForm.coverfilename) }}
+                    {{ form_widget(shopForm.coverfilename) }}
+
+                    {{ form_widget(shopForm.submit) }}
+
+                    {{ form_end(shopForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main %}

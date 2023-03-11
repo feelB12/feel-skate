@@ -1,0 +1,57 @@
+{% extends "admin/base.html.twig" %}
+
+{% block metatitle %}
+    Créer un Club| Skateboard Social Club
+{% endblock metatitle %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block main %}
+    <section class="section">
+        <div class="detail">
+            <div class="justify-between flex fdr">
+                <div class="flex">
+                    {{ form(clubForm)}}
+                    {{ form_start(clubForm) }}
+
+                    {{ form_label(clubForm.title, 'titre', {
+                        'label_attr': {
+                            'class': 'testLabelClass'
+                        }
+                    }) }}
+
+                    {{ form_widget(clubForm.title, {
+                        'attr': {
+                            'class': 'testClass'
+                        }
+                    }) }}
+
+                    {{ form_label(clubForm.description) }}
+                    {{ form_widget(clubForm.description) }}
+
+                    {{ form_label(clubForm.address) }}
+                    {{ form_widget(clubForm.address) }}
+
+                    {{ form_label(ccluborm.zippcode) }}
+                    {{ form_widget(clubForm.zippcode) }}
+
+                    {{ form_label(clubForm.town) }}
+                    {{ form_widget(clubForm.town) }}
+
+                    {{ form_label(clubForm.area) }}
+                    {{ form_widget(clubForm.area) }}
+
+                    {{ form_label(clubForm.coverfilename) }}
+                    {{ form_widget(clubForm.coverfilename) }}
+
+                    {{ form_widget(clubForm.submit) }}
+
+                    {{ form_end(clubForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main %}

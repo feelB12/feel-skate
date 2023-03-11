@@ -45,7 +45,7 @@
     <section class="section">
        <h3 class="go"> Les derniers shops</h3>
           <div class="line"></div>
-            {% for shop in shops %}
+            {% for shop in lastShops %}
                 <div class="of">
                     <div class="card-t">
                         <h1>{{ shop.title }}</h1>
@@ -87,7 +87,7 @@
     <section class="section">
             <h3 class="go"> Les dernières sessions</h3>
             <div class="line"></div>
-            {% for session in sessions %}
+            {% for session in lastSessions %}
                 <div class="of">
                     <div class="card-t">
                         <h1>{{ session.title }}</h1>
@@ -129,7 +129,7 @@
     <section class="section">
         <h3 class="go">Les derniers clubs</h3>
             <div class="line"></div>
-            {% for club in clubs %}
+            {% for club in lastClubs %}
                 <div class="of">
                     <div class="card-t">
                         <h1>{{ club.title }}</h1>
@@ -171,7 +171,7 @@
     <section class="section">
         <h3 class="go">Les derniers skateparks</h3>
             <div class="line"></div>
-            {% for skatepark in skateparks %}
+            {% for skatepark in lastSkateparks %}
                 <div class="of">
                     <div class="card-t">
                         <h1>{{ skatepark.title }}</h1>

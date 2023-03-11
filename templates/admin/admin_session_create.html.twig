@@ -1,0 +1,57 @@
+{% extends "admin/base.html.twig" %}
+
+{% block metatitle %}
+    Créer une Session| Skateboard Social Club
+{% endblock metatitle %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block main %}
+    <section class="section">
+        <div class="detail">
+            <div class="justify-between flex fdr">
+                <div class="flex">
+                    {{ form(sessionForm)}}
+                    {{ form_start(sessionForm) }}
+
+                    {{ form_label(sessionForm.title, 'titre', {
+                        'label_attr': {
+                            'class': 'testLabelClass'
+                        }
+                    }) }}
+
+                    {{ form_widget(sessionForm.title, {
+                        'attr': {
+                            'class': 'testClass'
+                        }
+                    }) }}
+
+                    {{ form_label(sessionForm.description) }}
+                    {{ form_widget(clubForm.description) }}
+
+                    {{ form_label(sessionForm.address) }}
+                    {{ form_widget(sessionForm.address) }}
+
+                    {{ form_label(csessionorm.zippcode) }}
+                    {{ form_widget(sessionForm.zippcode) }}
+
+                    {{ form_label(sessionForm.town) }}
+                    {{ form_widget(sessionForm.town) }}
+
+                    {{ form_label(sessionForm.area) }}
+                    {{ form_widget(sessionForm.area) }}
+
+                    {{ form_label(sessionForm.coverfilename) }}
+                    {{ form_widget(sessionForm.coverfilename) }}
+
+                    {{ form_widget(sessionForm.submit) }}
+
+                    {{ form_end(sessionForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main %}

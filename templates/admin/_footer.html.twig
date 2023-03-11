@@ -1,0 +1,64 @@
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+{% endblock stylesheets %}
+
+<div class="f-container"></div>
+<footer class="ft-section">
+  <!-- Footer main -->
+    <section class="ft-main">
+        <div class="ft-main-item">
+                <a href="#main">
+                    <img class="logoBig arrow" src="{{ asset('icon/fleche_top.png') }}" alt="top">
+                </a>
+                <ul>
+                    <li><a href="{{ path('sessions') }}">Sessions</a></li>
+                    <li><a href="{{ path('skateparks') }}">Skateparks</a></li>
+                    <li><a href="{{ path('clubs') }}">Clubs</a></li>
+                    <li><a href="{{ path('shops') }}">Shops</a></li>
+                </ul>
+        </div>
+        <div class="ft-main-item">
+            <h2 class="ft-title">Resources</h2>
+                <ul>
+                    <li><a href="{{ path('shops') }}">Coach</a></li>
+                    <li><a href="{{ path('shops') }}">Rider</a></li>
+                    <li><a href="{{ path('shops') }}">I-Maker</a></li>
+                    <li><a href="{{ path('shops') }}">Home</a></li>
+                </ul>
+        </div>
+        <div class="ft-main-item">
+            <h2 class="ft-title">Contact</h2>
+            <ul>
+                <li><a href="{{ path('shops') }}">Accueil</a></li>
+                <li><a href="{{ path('shops') }}"">Abonnement</a></li>
+                <li><a href="{{ path('shops') }}">Partenariat</a></li>
+            </ul>
+        </div>
+        <div class="ft-main-item">
+            <h2 class="ft-title">Restez conecté</h2>
+            <p>Inscrivez-vous à notre newsletter</p>
+            <form>
+                <input type="email" name="email" placeholder="Enter email address">
+                <input type="submit" value="s'inscrire">
+            </form>
+        </div>
+        <div class="ft-social">
+        <ul class="ft-social-list"> 
+            <li><a href="{{ path('shops') }}"><img class="logoBig" src="{{ asset('logo/facebook.png') }}" alt="FB"></a></li> 
+            <li><a href="{{ path('shops') }}"><img class="logoBig" src="{{ asset('logo/instagram.png') }}" alt="IS"></a></li>
+            <li><a href="{{ path('shops') }}"><img class="logoBig" src="{{ asset('logo/youtube.png') }}" alt="YT"></a></li> 
+        </ul> 
+        </div>
+    </section>
+
+  <!-- Footer legal -->
+  <section class="ft-legal">
+    <ul class="ft-legal-list">
+      <li><a href="{{ path('shops') }}">Plan du site</a></li>
+      <li><a href="{{ path('shops') }}">Mentions Légales</a></li>
+      <li>&copy; 2023 Copyright Skateboardsocialclub</li>
+    </ul>
+  </section>
+</footer>
+</body>
+</html>

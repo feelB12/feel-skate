@@ -1,0 +1,25 @@
+{% extends "admin/base.html.twig" %}
+
+{% block metatitle %}
+    Modifier un Shop | Skateboard Social Club
+{% endblock metatitle %}
+
+{% block stylesheets %}
+         <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block javascripts %}
+{% endblock javascripts %}
+
+{% block main %}
+    <section class="section">
+        <div class="detail">
+            <div class="justify-between flex fdr">
+                <div class="flex">
+                    {{ form(shopForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main %}

@@ -1,0 +1,33 @@
+{% extends "admin/base.html.twig" %}
+
+{% block metatitle %}
+    front Index | Skateboard Social Club
+{% endblock metatitle %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block main %}
+    <section>
+        <div class="detail">
+            <div class="card-text">
+                <form action="{{ path('login') }}" method="post">
+
+                    <label for="username">Email:</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="_password"/>
+
+                    <label>
+                        <input type="checkbox" name="remember_me"/>Remember me
+                    </label>
+
+                    <button type="submit">login</button>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock main %}
