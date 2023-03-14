@@ -66,6 +66,14 @@
             </ul>
           </ul>
         </header>
+        {% for message in app.flashes('success') %}
+            <p class="message-success">{{ message }}</p>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+            <p class="message-error">{{ message }}</p>
+        {% endfor %}
+
     <main id="main">
         {% block main %}
         {% endblock main %}
