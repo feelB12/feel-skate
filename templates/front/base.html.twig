@@ -38,7 +38,7 @@
                     </div>
                 </li>
                 <li class="container">
-                    <a href="# {{ path('home') }}" class="logo" type="submit">
+                    <a href="# {{ path('login') }}" class="logo" type="submit">
                         <img src="{{ asset('icon/login.png') }}" alt="login" class="logo" type="submit">
                     </a>
                 </li>
@@ -66,6 +66,15 @@
             </ul>
           </ul>
         </header>
+            <div>
+                {% for message in app.flashes('success') %}
+                    <p class="message-success">{{ message }}</p>
+                {% endfor %}
+
+                {% for message in app.flashes('error') %}
+                    <p class="message-error">{{ message }}</p>
+                {% endfor %}
+            </div>
     <main id="main">
         {% block main %}
         {% endblock main %}

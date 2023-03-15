@@ -1,0 +1,101 @@
+{% extends "front/base.html.twig" %}
+
+{% block metatitle %}
+    Users | Skateboard Social User
+{% endblock metatitle %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block main %}
+    <section class="section">
+        <div id="ico">
+            <div class="element">
+                <a href="{{ path('front_users') }}">
+                    <img class="title logoBig" href="{{ path('front_users') }}" src="{{ asset('icon/user-titre.png') }}" alt="User">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('front_users') }}">
+                    <img class="title logoBig" href="{{ path('front_users') }}" src="{{ asset('icon/user.png') }}" alt="User-icon">
+                </a>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="cadre">
+            {% block search %}
+                <form action="{{ path('front_search_users') }}">
+                    <div id="divSearch" class="conteneur">
+                        <div class="enfant">
+                            <button type="submit"> 
+                                <label for="userId">
+                                    <img class="logo icon" src="{{ asset('icon/loupe.png') }}" alt="loupe">
+                                </label>
+                            </button>
+                            <input type="text" id="userId" name="query" placeholder="Ville, Code postal">
+                        </div>
+                    </div>
+                </form>
+            {% endblock search %}
+        </div>
+    </section>
+    <section class="section">
+        <article class="book-detail">
+            <article class="">
+            </article>
+            <div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d11315.680982514892!2d-0.5710845672348571!3d44.84355753439826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sskateuser%20bordeaux!5e0!3m2!1sfr!2sfr!4v1653259555771!5m2!1sfr!2sfr" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </article>
+    </section>
+    <section class="section">
+        <h3 class="go"> Aller à :</h3>
+        <div class="line"></div>
+        {% for user in users %}
+            <div class="of">
+                <div class="card-t">
+                    <h1>{{ user.title }}</h1>
+                </div>
+                
+                <div class="tof">
+                    <b><img class="img-c resp" src="{{ asset('uploads/cover/'~user.coverFilename) }}" alt="photo-user"></b>
+                </div>
+                <div class="bTof" alt="banner-address">
+                    <h2>{{ user.address}} {{ user.town}}</h2>
+                </div>
+                        {#             {% if skatepark.user %} #}
+                        {#                        <h3>{{ skatepark.user.town }} {{ skatepark.user.area }}</h3> #}
+                        {#                    {% endif %} #}
+                
+                <div class="box">
+                    <div class="btn" >
+                        <a href="{{ path('front_user', {"id": user.id}) }}">
+                            <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir le user"><br>
+                                <h4 class="pad5">Voir</h4>
+                        </a>
+                    </div>
+                    <div class="btn">
+                        <a class="btn" href="{{ path('front_user_create', {"id": user.id}) }}">
+                            <img class="btn" src="{{ asset('icon/add-file-green.png') }}" alt="Créer un user"><br>
+                                <h4 class="pad5">Créer</h4>
+                        </a>
+                    </div>
+                    <div class="btn" >
+                        <a class="btn" href="{{ path('front_user_update', {"id": user.id}) }}">
+                            <img class="btn" src="{{ asset('icon/edit-pink.png') }}" alt="Modifier un user"><br>
+                                <h4 class="pad5">Modifier</h4>
+                        </a>
+                    </div>
+                    <div class="btn" >
+                        <a class="btn" href="{{ path('front_user_delete', {"id": user.id}) }}">
+                            <img class="btn" src="{{ asset('icon/delete-orange.png') }}" alt="Supprimer le user"><br>
+                                <h4 class="pad5">Supprimer</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock main%}
