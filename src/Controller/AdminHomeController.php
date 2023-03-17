@@ -51,7 +51,7 @@ class AdminHomeController extends AbstractController
             'shops' => $lastShops,
             'lastShops' =>$lastShops
         ]);
-
+       
     }
     /**
      * @Route("admin/home", name="admin_home")
@@ -78,6 +78,7 @@ class AdminHomeController extends AbstractController
             'lastSessions' => $lastSessions,
             'lastShops' =>$lastShops
         ]);
+        $this->addFlash('success', "Bienvenue vous êtes bien connecté!");
     }
     /**
      * @Route("admin/", name="admin_accueil")

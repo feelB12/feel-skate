@@ -17,6 +17,7 @@ class LoginController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         
+       
         return $this->render('login/index.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
@@ -28,6 +29,7 @@ class LoginController extends AbstractController
     public function logout(): void
     {
         // controller can be blank: it will never be called!
+        
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
     

@@ -1,12 +1,11 @@
-{% extends "front/front_base.html.twig" %}
+{% extends "admin/base.html.twig" %}
 
 {% block metatitle %}
-    Recherche | Skateboard Social Club
+    Dashboard Recherche | Skateboard Social Club
 {% endblock metatitle %}
 
 {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dash.css') }}">
 {% endblock stylesheets %}
 
 {% block title %}
@@ -14,6 +13,14 @@
 {% endblock title %}
 
 {% block main %}
+    {% for user in users %}
+        <div class="detail top20">
+            <div class="img-card">
+                <h2> {{ user.title }}</h2>
+                <h3> {{ user.description }}</h3>
+            </div>
+        </div>
+    {% endfor %}
     {% for club in clubs %}
         <div class="detail top20">
             <div class="img-card">
