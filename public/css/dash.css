@@ -1,24 +1,29 @@
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:300&display=swap");
 /* Color Variables */
-/* #eff3f6 */
 /* Styles */
 body {
   background: #e3e5e6;
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
+
 .text-red {
   color: red !important;
 }
+
 .text-green {
   color: green !important;
 }
+
 .text-orange {
   color: orange !important;
 }
+
 .text-blue {
   color: blue !important;
 }
+
 /* buttons */
 .btn-red {
   background: red;
@@ -29,6 +34,7 @@ body {
   background: #d60000;
   color: white;
 }
+
 .btn-grayblue {
   background: #acb6c4;
   color: white;
@@ -38,6 +44,7 @@ body {
   background: #97a4b5;
   color: white;
 }
+
 /* Custom scrollbar */
 .main ::-webkit-scrollbar {
   width: 5px;
@@ -52,6 +59,7 @@ body {
 .main ::-webkit-scrollbar-thumb:hover {
   background: #495871;
 }
+
 /* Left Menu */
 .left {
   width: 57px;
@@ -115,11 +123,21 @@ body {
   border-bottom: 1px solid #2b3443;
   transition: all 0.5s;
 }
+
 /* Right Content */
 .right {
   transition: all 0.5s;
   margin-left: 72px;
   /* Overview */
+  /* Performance */
+  /* Analytics */
+  /* Landing */
+  /* Projects */
+  /* User Profile */
+  /* Candidates */
+  /* Invoices */
+  /* Single Invoice */
+  /* Browse */
 }
 .right #overview .header {
   background: white;
@@ -297,14 +315,13 @@ body {
 }
 .right #overview .content .row.invoice-task .col-sm-6 .tasks .table tbody tr td .checkbox:hover label {
   text-decoration: line-through;
-  color: #999;
+  color: #999999;
 }
 .right #overview .content .row.invoice-task .col-sm-6 .tasks .table tbody tr td .checkbox:hover label input {
   opacity: 0.5;
 }
 .right #overview .content .row.invoice-task .col-sm-6 .tasks .table tbody tr td .checkbox label input {
   margin-top: 2px;
-  /* Performance */
 }
 .right #performance .header {
   background: white;
@@ -544,7 +561,6 @@ body {
 }
 .right #performance .content .stats .col-sm-4 .profit .table tbody tr:first-child td {
   border-top: none;
-  /* Analytics */
 }
 .right #analytics .header {
   background: white;
@@ -711,8 +727,8 @@ body {
   border: 5px solid #b300b3;
 }
 .right #analytics .content .total-stats .col-sm-3 .stats-card .red-chart {
-  background: #f33;
-  border: 5px solid #f33;
+  background: #ff3333;
+  border: 5px solid #ff3333;
 }
 .right #analytics .content .total-stats .col-sm-3 .stats-card .green-chart {
   background: #00b300;
@@ -753,7 +769,6 @@ body {
 }
 .right #analytics .content .income-customers .table-responsive table tbody tr td img {
   width: 30px;
-  /* Landing */
 }
 .right #landing .header {
   background: white;
@@ -902,7 +917,6 @@ body {
 }
 .right #landing .content .card-6 .table-responsive .table tr td img {
   height: 45px;
-  /* Projects */
 }
 .right #projects .header {
   background: white;
@@ -1015,7 +1029,7 @@ body {
   padding-right: 0;
 }
 .right #projects .content .row .col-sm-3:last-child .card-3 {
-  background: #f33;
+  background: #ff3333;
 }
 .right #projects .content .row .col-sm-3 .card-3 {
   background: white;
@@ -1118,7 +1132,6 @@ body {
 }
 .right #projects .content .row .responsive-table table tbody tr.danger td {
   background: white;
-  /* User Profile */
 }
 .right #user-profile .header {
   background: white;
@@ -1255,7 +1268,7 @@ body {
 }
 .right #user-profile .content .row .card-7 .tab-content .tab-pane ul small.title {
   margin-left: -25px;
-  color: #999;
+  color: #999999;
   font-weight: bold;
 }
 .right #user-profile .content .row .card-7 .tab-content .tab-pane ul li {
@@ -1338,7 +1351,7 @@ body {
   color: black;
 }
 .right #user-profile .content .row .card-5 .dtls .col-sm-3 h5 small {
-  color: #999;
+  color: #999999;
   line-height: 30px;
 }
 .right #user-profile .content .row .card-5 .fb, .right #user-profile .content .row .card-5 .drop, .right #user-profile .content .row .card-5 .link {
@@ -1379,7 +1392,7 @@ body {
   color: purple;
 }
 .right #user-profile .content .row .billing .billing-row .col-sm-3.text-gray {
-  color: #999;
+  color: #999999;
 }
 .right #user-profile .content .row .table tbody tr td {
   padding: 10px 5px;
@@ -1393,7 +1406,6 @@ body {
 }
 .right #user-profile .content .row .table tbody tr td:last-child {
   text-align: right;
-  /* Candidates */
 }
 .right #candidates .header {
   background: white;
@@ -1515,7 +1527,6 @@ body {
 }
 .right #candidates .content .row .candid-card .card-4 .row .col-sm-2 a {
   color: #bfbfbf;
-  /* Invoices */
 }
 .right #invoices .header {
   background: white;
@@ -1665,15 +1676,14 @@ body {
   font-size: smaller;
 }
 .right #invoices .content .table-invoice .table-in-card .table thead tr th {
-  color: #999;
+  color: #999999;
   border-bottom: 0;
 }
 .right #invoices .content .table-invoice .table-in-card .table tbody tr td {
   padding: 20px 10px;
 }
 .right #invoices .content .table-invoice .table-in-card .table tbody tr td:last-child a {
-  color: #999;
-  /* Single Invoice */
+  color: #999999;
 }
 .right #single-invoice .header {
   background: white;
@@ -1799,7 +1809,6 @@ body {
 }
 .right #single-invoice .content .s-inv-card .row .s-inv-body .col-sm-9 table thead tr th {
   color: #7f8fa4;
-  /* Browse */
 }
 .right #browse .header {
   background: white;
@@ -1909,16 +1918,20 @@ body {
   display: inline-block;
   vertical-align: middle;
 }
+
 .left:hover + .right {
   margin-left: 215px;
 }
+
 .strike {
-  color: #999;
+  color: #999999;
 }
+
 hr {
   border-top: 1px solid #e6e6e6;
   margin: 10px 0;
 }
+
 .py-15 {
   padding: 15px 0;
 }

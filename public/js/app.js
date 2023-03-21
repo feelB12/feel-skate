@@ -8,6 +8,10 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import './styles/app.scss';
+import "../css/app.scss"; 
+const $ = require('jquery'); 
+require('bootstrap');
+ 
 
 // start the Stimulus application
 import './bootstrap';
