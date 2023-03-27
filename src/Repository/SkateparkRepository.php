@@ -30,7 +30,7 @@ class SkateparkRepository extends ServiceEntityRepository
         // contiennent le contenu de $word (à un endroit ou à un autre, grâce à LIKE %xxxx%)
         $query = $queryBuilder->select('skatepark')
             ->where('skatepark.title LIKE :word')
-            ->setParameter('word', '%' . $word . '%')
+            ->setParameter('word', '%'. $word .'%')
             ->getQuery();
 
         // je récupère les résultats de la requête SQL

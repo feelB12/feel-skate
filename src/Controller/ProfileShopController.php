@@ -12,22 +12,22 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class  AdminShopController extends AbstractController
+class  ProfileShopController extends AbstractController
 {
      /**
-     * @Route("admin/shops", name="admin_shops")
+     * @Route("profile/shops", name="profile_shops")
      */
-    public function adminShops(ShopRepository $shopRepository)
+    public function profileShops(ShopRepository $shopRepository)
     {
         $shops = $shopRepository->findAll();
-        return $this->render('admin/admin_shops.html.twig', [
+        return $this->render('profile/profile_shops.html.twig', [
             'shops' => $shops
         ]);
     }
     /**
-     * @Route("admin/shop/create", name="admin_shop_create")
+     * @Route("profile/shop/create", name="profile_shop_create")
      */
-    public function adminCreateShop(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
+    public function profileCreateShop(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
     {
         $shop = new Shop();
         $shopForm = $this->createForm(ShopType::class, $shop);
@@ -59,17 +59,17 @@ class  AdminShopController extends AbstractController
             $entityManager->persist($shop);
             $entityManager->flush();
         }
-        //$this->addFlash('error', "Le Shop existe déja ou... !");
+        //$this->addFlash('error', "Le shop existe déja ou... !");
         $this->addFlash('success', "Le Shop a bien été créer !");
 
-        return $this->render('admin/admin_shop_create.html.twig',[
+        return $this->render('profile/profile_shop_create.html.twig',[
             'shopForm' => $shopForm->createView()
         ]);
     }
     /**
-     * @Route("admin/shop/update/{id}", name="admin_shop_update")
+     * @Route("profile/shop/update/{id}", name="profile_shop_update")
      */
-    public function adminUpdateShop($id, Request $request, ShopRepository $shopRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager)
+    public function profileUpdateShop($id, Request $request, ShopRepository $shopRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager)
     {
         $shop = $shopRepository->find($id);
 
@@ -106,14 +106,14 @@ class  AdminShopController extends AbstractController
         // $this->addFlash('error', "les champ n'ont pas tous été modifié!");
         $this->addFlash('success', "Le Shop a bien été modifié !");
 
-        return $this->render('admin/admin_shop_update.html.twig',[
+        return $this->render('profile/profile_shop_update.html.twig',[
             'shopForm' => $shopForm->createView()
         ]);
     }
     /**
-     * @Route("admin/shop/{id}", name="admin_shop")
+     * @Route("profile/shop/{id}", name="profile_shop")
      */
-    public function adminshop($id, ShopRepository $shopRepository)
+    public function profileShop($id, ShopRepository $shopRepository)
     {
         $shop = $shopRepository->find($id);
 
@@ -125,26 +125,26 @@ class  AdminShopController extends AbstractController
             ]);
         }
         $shop = $shopRepository->find($id);
-        return $this->render('admin/admin_shop.html.twig', [
+        return $this->render('profile/profile_shop.html.twig', [
             'shop' => $shop
         ]);
     }
     /**
-     * @Route("admin/shop/delete/{id}", name="admin_shop_delete")
+     * @Route("profile/shop/delete/{id}", name="profile_shop_delete")
      */
-    public function adminDeleteShop($id, EntityManagerInterface $entityManager, ShopRepository $shopRepository)
+    public function profileDeleteShop($id, EntityManagerInterface $entityManager, ShopRepository $shopRepository)
     {
         $shop = $shopRepository->find($id);
 
         $entityManager->remove($shop);
         $entityManager->flush();
 
-        return $this->redirectToRoute("admin_shops");
+        return $this->redirectToRoute("profile_shops");
     }
     /**
-     * @Route("admin/shop/search", name="admin_search_shops")
+     * @Route("profile/search", name="profile_search_shops")
      */
-    public function adminSearchShops(ShopRepository $shopRepository, Request $request)
+    public function profileSearchShops(ShopRepository $shopRepository, Request $request)
     {
         // je récupère ce que tu l'utilisateur a recherché grâce à la classe Request
         $word = $request->query->get('query');
@@ -152,7 +152,7 @@ class  AdminShopController extends AbstractController
         // je fais ma requête en BDD grâce à la méthode que j'ai créée searchByTitle
         $shops = $shopRepository->searchByTitle($word);
 
-        return $this->render('admin/admin_shops_search.html.twig', [
+        return $this->render('profile/profile_shops_search.html.twig', [
             'shops' => $shops
         ]);
     }

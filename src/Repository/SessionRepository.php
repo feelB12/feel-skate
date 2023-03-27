@@ -29,7 +29,7 @@ class SessionRepository extends ServiceEntityRepository
         // à condition que le titre de la session
         // contiennent le contenu de $word (à un endroit ou à un autre, grâce à LIKE %xxxx%)
         $query = $queryBuilder->select('session')
-            ->where('shop.title LIKE :word')
+            ->where('session.title LIKE :word')
             ->setParameter('word', '%' . $word . '%')
             ->getQuery();
 

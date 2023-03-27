@@ -43,6 +43,11 @@ ul {
 .logo {
     height: 5vh;
 }
+.rechercher { position: relative; }
+.rechercher input[type="text"] { position: absolute; left: 0; width: 100%; }
+.rechercher button[type="submit"] { position: absolute; right: -4px;background-color: #000; }
+
+
 /* Id */
 #logo {
 	display: flex;
@@ -107,8 +112,6 @@ display:none;
 	justify-content: center;
     align-items: baseline;
 }
-
-
 
 /* Hamburger Menu */
 a {

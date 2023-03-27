@@ -12,22 +12,22 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class  AdminSessionController extends AbstractController
+class  ProfileSessionController extends AbstractController
 {
      /**
-     * @Route("admin/sessions", name="admin_sessions")
+     * @Route("profile/sessions", name="profile_sessions")
      */
-    public function adminSessions(SessionRepository $sessionRepository)
+    public function profileSessions(SessionRepository $sessionRepository)
     {
         $sessions = $sessionRepository->findAll();
-        return $this->render('admin/admin_sessions.html.twig', [
+        return $this->render('profile/profile_sessions.html.twig', [
             'sessions' => $sessions
         ]);
     }
     /**
-     * @Route("admin/session/create", name="admin_session_create")
+     * @Route("profile/session/create", name="profile_session_create")
      */
-    public function adminCreateSession(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
+    public function profileCreateSession(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
     {
         $session = new Session();
         $sessionForm = $this->createForm(SessionType::class, $session);
@@ -62,14 +62,14 @@ class  AdminSessionController extends AbstractController
         //$this->addFlash('error', "Le Session existe déja ou... !");
         $this->addFlash('success', "Le Session a bien été créer !");
 
-        return $this->render('admin/admin_session_create.html.twig',[
+        return $this->render('profile/profile_session_create.html.twig',[
             'sessionForm' => $sessionForm->createView()
         ]);
     }
     /**
-     * @Route("admin/session/update/{id}", name="admin_session_update")
+     * @Route("profile/session/update/{id}", name="profile_session_update")
      */
-    public function adminUpdateSession($id, Request $request, SessionRepository $sessionRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager)
+    public function profileUpdateSession($id, Request $request, SessionRepository $sessionRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager)
     {
         $session = $sessionRepository->find($id);
 
@@ -106,18 +106,18 @@ class  AdminSessionController extends AbstractController
         // $this->addFlash('error', "les champ n'ont pas tous été modifié!");
         $this->addFlash('success', "Le Session a bien été modifié !");
 
-        return $this->render('admin/admin_session_update.html.twig',[
+        return $this->render('profile/profile_session_update.html.twig',[
             'sessionForm' => $sessionForm->createView()
         ]);
     }
     /**
-     * @Route("admin/session/{id}", name="admin_session")
+     * @Route("profile/session/{id}", name="profile_session")
      */
-    public function adminSession($id, SessionRepository $sessionRepository)
+    public function profileSession($id, SessionRepository $sessionRepository)
     {
         $session = $sessionRepository->find($id);
 
-        // si la Session n'a pas été trouvé je renvoi une exception (erreur)
+        // si le session n'a pas été trouvé je renvoi une exception (erreur)
         // pour afficher une erreur 404
         if (is_null($session)){
             return $this->render('bundles/TwigBundle/Exception/error404.html.twig', [
@@ -125,26 +125,26 @@ class  AdminSessionController extends AbstractController
             ]);
         }
         $session = $sessionRepository->find($id);
-        return $this->render('admin/admin_session.html.twig', [
+        return $this->render('profile/profile_session.html.twig', [
             'session' => $session
         ]);
     }
     /**
-     * @Route("admin/session/delete/{id}", name="admin_session_delete")
+     * @Route("profile/session/delete/{id}", name="profile_session_delete")
      */
-    public function adminDeleteSession($id, EntityManagerInterface $entityManager, SessionRepository $sessionRepository)
+    public function profileDeleteSession($id, EntityManagerInterface $entityManager, SessionRepository $sessionRepository)
     {
         $session = $sessionRepository->find($id);
 
         $entityManager->remove($session);
         $entityManager->flush();
 
-        return $this->redirectToRoute("admin_sessions");
+        return $this->redirectToRoute("profile_sessions");
     }
     /**
-     * @Route("admin/session/search", name="admin_search_sessions")
+     * @Route("profile/search", name="profile_search_sessions")
      */
-    public function adminSearchSessions(SessionRepository $sessionRepository, Request $request)
+    public function profileSearchSessions(SessionRepository $sessionRepository, Request $request)
     {
         // je récupère ce que tu l'utilisateur a recherché grâce à la classe Request
         $word = $request->query->get('query');
@@ -152,7 +152,7 @@ class  AdminSessionController extends AbstractController
         // je fais ma requête en BDD grâce à la méthode que j'ai créée searchByTitle
         $sessions = $sessionRepository->searchByTitle($word);
 
-        return $this->render('admin/admin_sessions_search.html.twig', [
+        return $this->render('profile/profile_sessions_search.html.twig', [
             'sessions' => $sessions
         ]);
     }

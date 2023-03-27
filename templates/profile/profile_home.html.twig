@@ -1,4 +1,4 @@
-{% extends "admin/base.html.twig" %}
+{% extends "profile/base.html.twig" %}
 
 {% block metatitle %}
      Accueil | Skateboard Social Club
@@ -13,59 +13,59 @@
     <section class="section">
         <div id="ico">
             <div class="element">
-                <a href="{{ path('admin_shops') }}">
-                    <img class="logoBig" src="{{ asset('icon/shops_titre.png') }}" alt="Shop">
+                <a href="{{ path('profile_shops') }}">
+                    <img class="logoBig" href="{{ path('profile_shops') }}" src="{{ asset('icon/shops_titre.png') }}" alt="Shop">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('admin_shops') }}">
-                    <img class="logoBig" src="{{ asset('icon/shops.png') }}" alt="Shop-icon">
+                <a href="{{ path('profile_shops') }}">
+                    <img class="logoBig" href="{{ path('profile_shops') }}" src="{{ asset('icon/shops.png') }}" alt="Shop-icon">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('admin_sessions') }}">
-                    <img class="title logoBig" href="{{ path('admin_sessions') }}" src="{{ asset('icon/sessions_titre.png') }}" alt="Shop">
+                <a href="{{ path('profile_sessions') }}">
+                    <img class="title logoBig" href="{{ path('profile_sessions') }}" src="{{ asset('icon/sessions_titre.png') }}" alt="Shop">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('admin_sessions') }}">
-                    <img class="title logoBig" href="{{ path('admin_sessions') }}" src="{{ asset('icon/session.png') }}" alt="Shop-icon">
+                <a href="{{ path('profile_sessions') }}">
+                    <img class="title logoBig" href="{{ path('profile_sessions') }}" src="{{ asset('icon/session.png') }}" alt="Shop-icon">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('admin_clubs') }}">
-                    <img class="title logoBig" href="{{ path('admin_clubs') }}" src="{{ asset('icon/clubs_titre.png') }}" alt="Shop">
+                <a href="{{ path('profile_clubs') }}">
+                    <img class="title logoBig" href="{{ path('profile_clubs') }}" src="{{ asset('icon/clubs_titre.png') }}" alt="Shop">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('admin_clubs') }}">
-                    <img class="title logoBig" href="{{ path('admin_clubs') }}" src="{{ asset('icon/club.png') }}" alt="Shop-icon">
+                <a href="{{ path('profile_clubs') }}">
+                    <img class="title logoBig" href="{{ path('profile_clubs') }}" src="{{ asset('icon/club.png') }}" alt="Shop-icon">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('admin_skateparks') }}">
-                    <img class="title logoBig" href="{{ path('admin_skateparks') }}" src="{{ asset('icon/skateparks_titre.png') }}" alt="Skateparks">
+                <a href="{{ path('profile_skateparks') }}">
+                    <img class="title logoBig" href="{{ path('profile_skateparks') }}" src="{{ asset('icon/skateparks_titre.png') }}" alt="Shop">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('admin_skateparks') }}">
-                    <img class="title logoBig" href="{{ path('admin_skateparks') }}" src="{{ asset('icon/skateparks.png') }}" alt="Skateparks-icon">
+                <a href="{{ path('profile_skateparks') }}">
+                    <img class="title logoBig" href="{{ path('profile_skateparks') }}" src="{{ asset('icon/skateparks.png') }}" alt="Shop-icon">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('admin_users') }}">
-                    <img class="title logoBig" href="{{ path('admin_users') }}" src="{{ asset('icon/users-titre.png') }}" alt="User">
+                <a href="{{ path('profile_users') }}">
+                    <img class="title logoBig" href="{{ path('profile_users') }}" src="{{ asset('icon/users-titre.png') }}" alt="Shop">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('admin_users') }}">
-                    <img class="title logoBig" href="{{ path('admin_users') }}" src="{{ asset('icon/user.png') }}" alt="User-icon">
+                <a href="{{ path('profile_users') }}">
+                    <img class="title logoBig" href="{{ path('profile_users') }}" src="{{ asset('icon/user.png') }}" alt="Shop-icon">
                 </a>
             </div>
         </div>
         <div class="cadre">
             {% block search %}
-                <form action="{{ path('admin_search') }}">
+                <form action="{{ path('profile_search') }}">
                     <div id="divSearch" class="conteneur">
                         <div class="enfant">
                             <button type="submit"> 

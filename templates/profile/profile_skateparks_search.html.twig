@@ -1,0 +1,26 @@
+{% extends "profile/base.html.twig" %}
+
+{% block metatitle %}
+    Recherche Skatepark | Skateboard Social Club
+{% endblock metatitle %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/burger.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block title %}
+    searching result
+{% endblock title %}
+
+{% block main %}
+    {% for skatepark in skateparks %}
+        <div class="detail top20">
+            <div class="img-card">
+                <h2> {{ skatepark.title }}</h2>
+                <h3> {{ skatepark.description }}</h3>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock main %}

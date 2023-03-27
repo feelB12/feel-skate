@@ -1,10 +1,15 @@
 security:
+    role_hierarchy:
+        ROLE_CLIENT:      ROLE_USER
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN]
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
         App\Entity\User:
             algorithm: auto
+    
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
@@ -17,6 +22,13 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            remember_me:
+                secret:   '%kernel.secret%' # required
+                lifetime: 999999604800 # 604800 = 1 week in seconds
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                always_remember_me: true
             lazy: true
             provider: app_user_provider
 
@@ -28,7 +40,9 @@ security:
                 # "app_login" is the name of the route created previously
                 login_path: login
                 check_path: login
-                default_target_path: admin_home
+                default_target_path: profile_home
+                failure_path: login
+                
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -39,8 +53,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/admin, roles: ROLE_SUPER_ADMIN }
+         - { path: ^/profile, roles: ROLE_ADMIN }
 
 when@test:
     security:

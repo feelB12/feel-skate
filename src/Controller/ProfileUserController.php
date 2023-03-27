@@ -13,22 +13,22 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class AdminUserController extends AbstractController
+class ProfileUserController extends AbstractController
 {
     /**
-     * @Route("admin/users", name="admin_users")
+     * @Route("profile/users", name="profile_users")
      */
-    public function AdminUsers(UserRepository $userRepository)
+    public function profileUsers(UserRepository $userRepository)
     {
         $users = $userRepository->findAll();
-        return $this->render('admin/admin_users.html.twig', [
+        return $this->render('profile/profile_users.html.twig', [
             'users' => $users
         ]);
     }
     /**
-     * @Route("admin/user/create", name="admin_user_create", methods={"GET","POST"})
+     * @Route("profile/user/create", name="profile_user_create", methods={"GET","POST"})
      */
-    public function AdminCreateUser(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
+    public function profileCreateUser(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
     {
         $user = new user();
         $userForm = $this->createForm(UserType::class, $user);
@@ -53,6 +53,9 @@ class AdminUserController extends AbstractController
                     $this->getParameter( 'cover_directory'),
                     $newFilename
                 );
+
+                // 5 enregistrer le nom du fichier dan sla colonne coverFilename
+                $user->setCoverFilename($newFilename);
             }
             if ($portraitFile) {
                 // 2 recupérer le nom du fichiers uploadé
@@ -67,26 +70,22 @@ class AdminUserController extends AbstractController
                     $this->getParameter( 'portrait_directory'),
                     $idFilename
                 );
-            // 5 enregistrer le nom du fichier dan sla colonne coverFilename
-            $user->setCoverFilename($newFilename);
-            $user->setPortraitFilename($idFilename);
-            
-        }
-        $entityManager->persist($user);
-        $entityManager->flush();
 
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
         //$this->addFlash('error', "Le user existe déja ou... !");
         $this->addFlash('success', "L'utilisateur a bien été créer !");
 
         return $this->render('registration/register.html.twig',[
             'userForm' => $userForm->createView()
         ]);
-        }
+    }
     }
     /**
-     * @Route("admin/user/update/{id}", name="admin_user_update")
+     * @Route("profile/user/update/{id}", name="profile_user_update")
      */
-    public function AdminUpdateUser($id, Request $request, UserRepository $userRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager)
+    public function profileUpdateUser($id, Request $request, UserRepository $userRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager)
     {
         $user = $userRepository->find($id);
 
@@ -97,7 +96,6 @@ class AdminUserController extends AbstractController
             // gestion de l'upload img
             // 1 recupérer les fichiers uploadé
             $coverFile = $userForm->get('coverFilename')->getData();
-            $portraitFile = $userForm->get('portraitFilename')->getData();
 
             if ($coverFile) {
                 // 2 recupérer le nom du fichiers uploadé
@@ -112,62 +110,48 @@ class AdminUserController extends AbstractController
                     $this->getParameter('cover_directory'),
                     $newFilename
                 );
-                }
-                if ($portraitFile) {
-                    // 2 recupérer le nom du fichiers uploadé
-                    $originalFilename = pathinfo($portraitFile->getClientOriginalName(), PATHINFO_FILENAME);
 
-                    // 3 renommer le fichier avec un nom unique
-                    $safeFilename = $slugger->slug($originalFilename);
-                    $idFilename = $safeFilename.'-'.uniqid().'.'.$portraitFile->guessExtension();
-
-                    // 4 déplacer le fichier dans le dossier publique
-                    $portraitFile->move(
-                        $this->getParameter( 'portrait_directory'),
-                        $idFilename
-                    );
-                    // 5 enregistrer le nom du fichier dan sla colonne coverFilename
+                // 5 enregistrer le nom du fichier dan sla colonne coverFilename
                 $user->setCoverFilename($newFilename);
-                $user->setPortraitFilename($idFilename);
-                }
-                
-                $entityManager->persist($user);
-                $entityManager->flush();
             }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+        }
         // $this->addFlash('error', "les champ n'ont pas tous été modifié!");
         $this->addFlash('success', "Le user a bien été modifié !");
 
-        return $this->render('admin/admin_user_update.html.twig',[
+        return $this->render('profile/profile_user_update.html.twig',[
             'userForm' => $userForm->createView()
         ]);
     }
-
     /**
-     * @Route("admin/user/{id}", name="admin_user")
+     * @Route("profile/user/{id}", name="profile_user")
      */
-    public function Adminuser($id, UserRepository $userRepository)
+    public function profileUser($id, UserRepository $userRepository)
     {
         $user = $userRepository->find($id);
-        return $this->render('admin/admin_user.html.twig', [
+        return $this->render('profile/profile_user.html.twig', [
             'user' => $user
         ]);
     }
     /**
-     * @Route("admin/user/delete/{id}", name="admin_user_delete")
+     * @Route("profile/user/delete/{id}", name="profile_user_delete")
      */
-    public function AdminDeleteUser($id, EntityManagerInterface $entityManager, UserRepository $userRepository)
+    public function profileDeleteUser($id, EntityManagerInterface $entityManager, UserRepository $userRepository)
     {
         $user = $userRepository->find($id);
 
         $entityManager->remove($user);
         $entityManager->flush();
 
-        return $this->redirectToRoute("admin_users");
+        return $this->redirectToRoute("profile_users");
     }
     /**
-     * @Route("admin/user/search", name="admin_search_users")
+     * @Route("profile/search", name="profile_search_users")
      */
-    public function AdminSearchUsers(UserRepository $userRepository, Request $request)
+    public function profileSearchUsers(UserRepository $userRepository, Request $request)
     {
         // je récupère ce que tu l'utilisateur a recherché grâce à la classe Request
         $word = $request->query->get('query');
@@ -175,7 +159,7 @@ class AdminUserController extends AbstractController
         // je fais ma requête en BDD grâce à la méthode que j'ai créée searchByTitle
         $users = $userRepository->searchByTitle($word);
 
-        return $this->render('admin/admin_users_search.html.twig', [
+        return $this->render('profile/profile_users_search.html.twig', [
             'users' => $users
         ]);
     }

@@ -29,6 +29,10 @@ class UserType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
+            ->add('portraitFilename', FileType::class, [
+                'mapped' => false,
+                'required' => false,
+            ])
             ->add('valider', SubmitType::class)
         ;
     }

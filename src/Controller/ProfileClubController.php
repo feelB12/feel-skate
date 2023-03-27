@@ -5,29 +5,28 @@ namespace App\Controller;
 use App\Entity\Club;
 use App\Form\ClubType;
 use App\Repository\ClubRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class  AdminClubController extends AbstractController
+class ProfileClubController extends AbstractController
 {
-     /**
-     * @Route("admin/clubs", name="admin_clubs")
+    /**
+     * @Route("profile/clubs", name="profile_clubs")
      */
-    public function adminClubs(ClubRepository $clubRepository)
+    public function profileClubs(ClubRepository $clubRepository)
     {
         $clubs = $clubRepository->findAll();
-        return $this->render('admin/admin_clubs.html.twig', [
+        return $this->render('profile/profile_clubs.html.twig', [
             'clubs' => $clubs
         ]);
     }
     /**
-     * @Route("admin/club/create", name="admin_club_create")
+     * @Route("profile/club/create", name="profile_club_create")
      */
-    public function adminCreateClub(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
+    public function profileCreateClub(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
     {
         $club = new Club();
         $clubForm = $this->createForm(ClubType::class, $club);
@@ -62,14 +61,14 @@ class  AdminClubController extends AbstractController
         //$this->addFlash('error', "Le club existe déja ou... !");
         $this->addFlash('success', "Le Club a bien été créer !");
 
-        return $this->render('admin/admin_club_create.html.twig',[
+        return $this->render('profile/profile_club_create.html.twig',[
             'clubForm' => $clubForm->createView()
         ]);
     }
     /**
-     * @Route("admin/club/update/{id}", name="admin_club_update")
+     * @Route("profile/club/update/{id}", name="profile_club_update")
      */
-    public function adminUpdateClub($id, Request $request, ClubRepository $clubRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager)
+    public function profileUpdateClub($id, Request $request, ClubRepository $clubRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager)
     {
         $club = $clubRepository->find($id);
 
@@ -106,14 +105,14 @@ class  AdminClubController extends AbstractController
         // $this->addFlash('error', "les champ n'ont pas tous été modifié!");
         $this->addFlash('success', "Le Club a bien été modifié !");
 
-        return $this->render('admin/admin_club_update.html.twig',[
+        return $this->render('profile/profile_club_update.html.twig',[
             'clubForm' => $clubForm->createView()
         ]);
     }
     /**
-     * @Route("admin/club/{id}", name="admin_club")
+     * @Route("profile/club/{id}", name="profile_club")
      */
-    public function adminClub($id, ClubRepository $clubRepository)
+    public function profileClub($id, ClubRepository $clubRepository)
     {
         $club = $clubRepository->find($id);
 
@@ -124,27 +123,16 @@ class  AdminClubController extends AbstractController
                 'club' => $club
             ]);
         }
+
         $club = $clubRepository->find($id);
-        return $this->render('admin/admin_club.html.twig', [
+        return $this->render('profile/profile_club.html.twig', [
             'club' => $club
         ]);
     }
     /**
-     * @Route("admin/club/delete/{id}", name="admin_club_delete")
+     * @Route("profile/clubs/search", name="profile_search_clubs")
      */
-    public function adminDeleteClub($id, EntityManagerInterface $entityManager, ClubRepository $clubRepository)
-    {
-        $club = $clubRepository->find($id);
-
-        $entityManager->remove($club);
-        $entityManager->flush();
-
-        return $this->redirectToRoute("admin_clubs");
-    }
-    /**
-     * @Route("admin/club/search", name="admin_search_clubs")
-     */
-    public function adminSearchClubs(ClubRepository $clubRepository, Request $request)
+    public function profileSearchClubs(ClubRepository $clubRepository, Request $request)
     {
         // je récupère ce que tu l'utilisateur a recherché grâce à la classe Request
         $word = $request->query->get('query');
@@ -152,8 +140,8 @@ class  AdminClubController extends AbstractController
         // je fais ma requête en BDD grâce à la méthode que j'ai créée searchByTitle
         $clubs = $clubRepository->searchByTitle($word);
 
-        return $this->render('admin/admin_clubs_search.html.twig', [
-            'clubs' => $clubs
+        return $this->render('profile/profile_clubs_search.html.twig', [
+            'clubs' => $clubs,
         ]);
     }
 }

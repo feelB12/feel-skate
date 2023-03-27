@@ -15,14 +15,14 @@
     <body>
         <header >
           <ul class="banner">
-            <div id="logo"><a href=" {{ path('home') }}">
+            <div id="logo"><a href="# {{ path('profile_home') }}">
                         <img class="logo" src="{{ asset('logo/logo_blanc_trans.png') }}" alt="logo" class="resp">
                     </a>
             </div>
             <ul class="search-toogle">
                 <li class="container">
                     <div id="top" class="container">
-                        <form role="search" method="get" class="search-form rechercher" action="">
+                        <form role="search" method="get" class="search-form" action="">
                             <label>
                                 <input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:" />
                             </label>
@@ -38,7 +38,7 @@
                     </div>
                 </li>
                 <li class="container">
-                    <a href=" {{ path('login') }}" class="logo">
+                    <a href="# {{ path('login') }}" class="logo" type="submit">
                         <img src="{{ asset('icon/login.png') }}" alt="login" class="logo" type="submit">
                     </a>
                 </li>
@@ -50,14 +50,14 @@
                                     <span></span>
                                     <span></span>
                             <ul id="menu">
-                                <li class="sub-link"><a class="" aria-current="page" href="{{ path('sessions') }}">SESSIONS</a>
-                                    <li><a class="" aria-current="page" href="{{ path('skateparks') }}">SKATEPARKS</a></li>
-                                    <li><a class="" aria-current="page" href="{{ path('clubs') }}">CLUBS</a></li> 
-                                    <li><a class="" aria-current="page" href="{{ path('shops') }}">SHOPS</a></li>
-                                    <li><a class="" aria-current="page" href="{{ path('shops') }}">RIDERS</a></li>
-                                    <li><a class="" aria-current="page" href="{{ path('shops') }}">PIC-MAKER</a></li>
-                                    <li><a class="" aria-current="page" href="{{ path('shops') }}">HOME</a></li> 
-                                    <li><a class="" aria-current="page" href="{{ path('shops') }}">CONTACT</a></li> 
+                                <li class="sub-link"><a class="" aria-current="page" href="{{ path('profile_sessions') }}">SESSIONS</a>
+                                    <li><a class="" aria-current="page" href="{{ path('profile_skateparks') }}">SKATEPARKS</a></li>
+                                    <li><a class="" aria-current="page" href="{{ path('profile_clubs') }}">CLUBS</a></li> 
+                                    <li><a class="" aria-current="page" href="{{ path('profile_shops') }}">SHOPS</a></li>
+                                    <li><a class="" aria-current="page" href="{{ path('profile_users') }}">RIDERS</a></li>
+                                    <li><a class="" aria-current="page" href="{{ path('profile_shops') }}">PIC-MAKER</a></li>
+                                    <li><a class="" aria-current="page" href="{{ path('profile_home') }}">HOME</a></li> 
+                                    <li><a class="" aria-current="page" href="{{ path('profile_shops') }}">CONTACT</a></li> 
                                 </li>
                             </ul>
                         </div>
@@ -79,4 +79,4 @@
         {% block main %}
         {% endblock main %}
     </main>
-{% include '_footer.html.twig' %}
+{% include 'profile/_footer.html.twig' %}

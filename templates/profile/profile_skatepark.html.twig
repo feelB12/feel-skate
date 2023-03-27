@@ -1,0 +1,173 @@
+{% extends "profile/base.html.twig" %}
+
+{% block metatitle %}
+    {{ skatepark.title }} | Skateboard Social Club
+{% endblock metatitle %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{# {% block javascripts %} #}
+{#     {{ encore_entry_script_tags('app') }} #}
+{# {% endblock javascripts %} #}
+
+{% block main %}
+    <section class="section">
+        <div id="ico">
+            <div class="element">
+                <a href="{{ path('profile_skateparks') }}">
+                    <img class="title logoBig" href="{{ path('profile_skateparks') }}" src="{{ asset('icon/skateparks_titre.png') }}" alt="Shop">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('profile_skateparks') }}">
+                    <img class="title logoBig" href="{{ path('profile_skateparks') }}" src="{{ asset('icon/skateparks.png') }}" alt="Shop-icon">
+                </a>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="">
+            <div class="cadre">
+                {% block search %}
+                    <form action="{{ path('profile_search_skateparks') }}">
+                        <div class="homeElement">
+                            <div class="logo icon element">
+                                <label for="userId">
+                                    <img class="logo icon" src="{{ asset('icon/loupe.png') }}" alt="loupe">
+                                </label>
+                            </div>
+                            <div class="element">
+                                <input type="text" id="userId" name="query" placeholder="Ville, Code postal">
+                            </div>
+                        </div>
+                    </form>
+                {% endblock search %}
+            </div>
+        <article class="card-detail">
+                <div class="card-title"><h1>{{ skatepark.title }}</h1><br></div>
+        </article>
+        <article class="card-address">
+             <div class="card-title"><h2>{{ skatepark.address }} {{ skatepark.town }}</h2></div>
+        </article>
+        <article class="detail">
+            <div class="card-text">
+                <div class="" id="tm">
+                    <div class="" id="tmbk">
+                        <div id="abs1" class="absolute">
+                            <b><img class="left logoBig resp arrow-left" src="{{ asset('icon/fleche_droite.png') }}" alt="Preview">
+                            </b><br />
+                        </div>
+                        <div id="abs2" class="absolute">
+                            <b><img class="arrow-right right logoBig resp" src="{{ asset('icon/fleche_droite.png') }}" alt="Next">
+                            </b><br />
+                        </div>
+                        <div id="abs6" class="list">
+                            <ul  class="absolute indicators ">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <div id="sta1" class="static">
+                            <b>
+                                <img class="img-card" src="{{ asset('uploads/cover/'~skatepark.coverFilename) }}" alt="photo-skatepark">
+                            </b><br />
+                        </div>
+                        
+                    </div>
+                    <div class="table-flex">
+                        <table>
+                            <tr>
+                                <td><h5>Lundi -</h5></td>
+                                <td><h5>fermé</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5>Mardi</h5></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><h5> 14:00 - </h5></td>
+                                <td><h5>21:00</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5>Mercredi</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5> 14:00 - </h5></td>
+                                <td><h5> 19:00</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5>Jeudi</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5> 14:00 - </h5></td>
+                                <td><h5>21:00</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5>Vendredi</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5> 14:00 - </h5></td>
+                                <td><h5>21:00</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5>Samedi</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5> 14:00 - </h5></td>
+                                <td><h5> 19:00</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5>Dimanche</h5></td>
+                            </tr>
+                            <tr>
+                                <td><h5> 14:00 - </h5></td>
+                                <td><h5> 19:00</h5></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </article>
+        <article class="detail">
+            <div class="card-text">
+                <div class="box">
+                <div class="btn" >
+                        <a href="{{ path('profile_skateparks') }}">
+                            <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir les skatepark"><br>
+                                <h4 class="pad5">Skateparks</h4>
+                        </a>
+                    </div>
+                    <div class="btn">
+                        <a id="link2" class="btn" href="{{ path('profile_skatepark_create', {"id": skatepark.id}) }}">
+                            <img class="btn" src="{{ asset('icon/add-file-green.png') }}" alt="Créer un skatepark"><br>
+                                <h4 class="pad5">Créer</h4>
+                        </a>
+                    </div>
+                    <div class="btn" >
+                        <a id="link3" class="btn" href="{{ path('profile_skatepark_update', {"id": skatepark.id}) }}">
+                            <img class="btn" src="{{ asset('icon/edit-pink.png') }}" alt="Modifier le skatepark"><br>
+                                <h4 class="pad5">Modifier</h4>
+                        </a>
+                    </div>
+                    <div class="btn" >
+                        <a id="link4"class="btn" href="{{ path('profile_skatepark_delete', {"id": skatepark.id}) }}">
+                            <img class="btn" src="{{ asset('icon/delete-orange.png') }}" alt="Supprimer le skatepark"><br>
+                                <h4 class="pad5">Supprimer</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="justifyBox">
+                     <p>{{ skatepark.description }}{{ skatepark.description }}</p>
+                </div>
+            </div>
+            <div class="card-map">
+                <iframe src="https://www.google.com/maps?q=[{{skatepark.address}}{{skatepark.town}}]&output=embed" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </article>
+    </section>
+
+{% endblock main %}

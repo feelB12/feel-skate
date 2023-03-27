@@ -21,7 +21,7 @@ class ShopRepository extends ServiceEntityRepository
     public function searchByTitle($word)
     {
         // j'utilise la méthode createQueryBuilder provenant de la classe parent
-        // et je définis un alias pour la table book
+        // et je définis un alias pour la table shop
         $queryBuilder = $this->createQueryBuilder('shop');
 
         // je demande à Doctrine de créer une requête SQL
@@ -30,7 +30,7 @@ class ShopRepository extends ServiceEntityRepository
         // contiennent le contenu de $word (à un endroit ou à un autre, grâce à LIKE %xxxx%)
         $query = $queryBuilder->select('shop')
             ->where('shop.title LIKE :word')
-            ->setParameter('word', '%' . $word . '%')
+            ->setParameter('word', '%'.$word.'%')
             ->getQuery();
 
         // je récupère les résultats de la requête SQL

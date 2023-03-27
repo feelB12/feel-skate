@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Repository\UserRepository;
 use App\Repository\ClubRepository;
 use App\Repository\SessionRepository;
 use App\Repository\ShopRepository;
@@ -11,13 +11,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class SearchController extends AbstractController
 {
     /**
      * @Route("/search", name="search")
      */
-    public function Search(SessionRepository $sessionRepository, SkateparkRepository $skateparkRepository,  ClubRepository $clubRepository, ShopRepository $shopRepository, Request $request)
+    public function Search(SessionRepository $sessionRepository, SkateparkRepository $skateparkRepository,  ClubRepository $clubRepository, ShopRepository $shopRepository,  UserRepository $userRepository, Request $request)
     {
         // je récupère ce que tu l'utilisateur a recherché grâce à la classe Request
         $word = $request->query->get('query');
@@ -26,6 +25,7 @@ class SearchController extends AbstractController
         $sessions = $sessionRepository->searchByTitle($word);
         $skateparks = $skateparkRepository->searchByTitle($word);
         $clubs = $clubRepository->searchByTitle($word);
+        $users = $userRepository->searchByTitle($word);
         $shops = $shopRepository->searchByTitle($word);
 
 
@@ -33,7 +33,8 @@ class SearchController extends AbstractController
             'sessions' => $sessions,
             'skateparks' => $skateparks,
             'clubs' => $clubs,
-            'shop' => $shops,
+            'users' => $users,
+            'shops' => $shops,
         ]);
     }
 }

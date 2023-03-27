@@ -13,20 +13,23 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class UserController extends AbstractController
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
+
+class UserController extends AbstractController 
 {
     /**
-     * @Route("profile/users", name="profile_users")
+     * @Route("/users", name="users")
      */
     public function FrontUsers(UserRepository $userRepository)
     {
         $users = $userRepository->findAll();
-        return $this->render('profile/profile_users.html.twig', [
+        return $this->render('users.html.twig', [
             'users' => $users
         ]);
     }
     /**
-     * @Route("profile/user/create", name="profile_user_create", methods={"GET","POST"})
+     * @Route("/user/create", name="user_create", methods={"GET","POST"})
      */
     public function CreateUser(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
     {
@@ -68,7 +71,7 @@ class UserController extends AbstractController
         ]);
     }
     /**
-     * @Route("profile/user/update/{id}", name="profile_user_update")
+     * @Route("/user/update/{id}", name="user_update")
      */
     public function UpdateUser($id, Request $request, UserRepository $userRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager)
     {
@@ -107,22 +110,22 @@ class UserController extends AbstractController
         // $this->addFlash('error', "les champ n'ont pas tous été modifié!");
         $this->addFlash('success', "Le user a bien été modifié !");
 
-        return $this->render('profile/profile_user_update.html.twig',[
+        return $this->render('user_update.html.twig',[
             'userForm' => $userForm->createView()
         ]);
     }
     /**
-     * @Route("profile/user/{id}", name="profile_user")
+     * @Route("user/{id}", name="user")
      */
     public function user($id, UserRepository $userRepository)
     {
         $user = $userRepository->find($id);
-        return $this->render('profile/profile_user.html.twig', [
+        return $this->render('user.html.twig', [
             'user' => $user
         ]);
     }
     /**
-     * @Route("profile/user/delete/{id}", name="profile_user_delete")
+     * @Route("/user/delete/{id}", name="user_delete")
      */
     public function DeleteUser($id, EntityManagerInterface $entityManager, UserRepository $userRepository)
     {
@@ -131,10 +134,10 @@ class UserController extends AbstractController
         $entityManager->remove($user);
         $entityManager->flush();
 
-        return $this->redirectToRoute("profile_users");
+        return $this->redirectToRoute("users");
     }
     /**
-     * @Route("profile/search", name="search_users")
+     * @Route("user/search", name="search_users")
      */
     public function SearchUsers(UserRepository $userRepository, Request $request)
     {
@@ -144,7 +147,7 @@ class UserController extends AbstractController
         // je fais ma requête en BDD grâce à la méthode que j'ai créée searchByTitle
         $users = $userRepository->searchByTitle($word);
 
-        return $this->render('profile/profile_users_search.html.twig', [
+        return $this->render('users_search.html.twig', [
             'users' => $users
         ]);
     }

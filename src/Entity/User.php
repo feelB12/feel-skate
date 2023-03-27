@@ -43,6 +43,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $coverFilename;
 
+     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $portraitFilename;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -90,12 +95,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCoverFilename(): ?string
+    public function getPortraitFilename(): ?string
     {
         return $this->coverFilename;
     }
 
-    public function setCoverFilename(?string $coverFilename): self
+    public function setPortraitFilename(?string $coverFilename): self
     {
         $this->coverFilename = $coverFilename;
 
