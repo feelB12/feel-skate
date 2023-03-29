@@ -143,7 +143,7 @@ class Shop
         return $this->coverFilename;
     }
 
-    public function setCoverFilename(?string $coverFilename): self
+    public function setCoverFilename(string $coverFilename): self
     {
         $this->coverFilename = $coverFilename;
 
@@ -155,7 +155,7 @@ class Shop
         return $this->longitude;
     }
 
-    public function setLongitude(?float $longitude): self
+    public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;
 
@@ -167,7 +167,7 @@ class Shop
         return $this->latitude;
     }
 
-    public function setLatitude(?float $latitude): self
+    public function setLatitude(float $latitude): self
     {
         $this->latitude = $latitude;
 

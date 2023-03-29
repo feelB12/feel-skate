@@ -130,6 +130,18 @@ class ProfileClubController extends AbstractController
         ]);
     }
     /**
+     * @Route("profile/club/delete/{id}", name="profile_club_delete")
+     */
+    public function profileDeleteClub($id, EntityManagerInterface $entityManager, ClubRepository $clubRepository)
+    {
+        $club = $clubRepository->find($id);
+
+        $entityManager->remove($club);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("profile_clubs");
+    }
+    /**
      * @Route("profile/clubs/search", name="profile_search_clubs")
      */
     public function profileSearchClubs(ClubRepository $clubRepository, Request $request)

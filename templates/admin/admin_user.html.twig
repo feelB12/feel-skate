@@ -46,7 +46,7 @@
                 {% endblock search %}
             </div>
         <article class="card-detail">
-                <div class="card-title"><h1>{{ user.title }}</h1><br></div>
+                <div class="card-title"><h1>{{ user.name }} {{ user.firstname }} {{ user.title }}</h1><br></div>
         </article>
         <article class="card-address">
              <div class="card-title"><h2>{{ user.address }} {{ user.town }}</h2></div>
@@ -142,7 +142,7 @@
                         </a>
                     </div>
                     <div class="btn">
-                        <a id="link2" class="btn" href="{{ path('admin_user_create', {"id": user.id}) }}">
+                        <a id="link2" class="btn" href="{{ path('admin_user_create') }}">
                             <img class="btn" src="{{ asset('icon/add-file-green.png') }}" alt="Créer un user"><br>
                                 <h4 class="pad5">Créer</h4>
                         </a>

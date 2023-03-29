@@ -66,15 +66,19 @@
             </ul>
           </ul>
         </header>
-            <div>
-                {% for message in app.flashes('success') %}
+        {# si le message flashes de type 'success' ont été ajoutés, on les affiche #}
+            {% for message in app.flashes('success') %}
+                <div class="alerte alert-success">
                     <p class="message-success">{{ message }}</p>
-                {% endfor %}
-
-                {% for message in app.flashes('error') %}
+                </div>
+            {% endfor %}
+        {# si le message flashes de type 'error' ont été ajoutés, on les affiche #}   
+            {% for message in app.flashes('error') %}
+                <div class="alerte alert-error">
                     <p class="message-error">{{ message }}</p>
-                {% endfor %}
-            </div>
+                </div> 
+            {% endfor %}
+
     <main id="main">
         {% block main %}
         {% endblock main %}

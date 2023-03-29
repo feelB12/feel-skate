@@ -53,7 +53,7 @@ class  AdminShopController extends AbstractController
                 );
 
                 // 5 enregistrer le nom du fichier dan sla colonne coverFilename
-                    $shop->setCoverFilename($newFilename);
+                $shop->setCoverFilename($newFilename);
             }
 
             $entityManager->persist($shop);

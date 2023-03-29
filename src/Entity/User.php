@@ -5,6 +5,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -28,7 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json_array")
      */
     private $roles = [];
 
@@ -72,11 +74,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="integer", nullable=true)
      */
     private $zippcode;
-
+    
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $town;
+    
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,20 +94,103 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->email;
     }
-
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getZippcode(): ?int
+    {
+        return $this->zippcode;
+    }
+
+    public function setZippcode(int $zippcode): self
+    {
+        $this->zippcode = $zippcode;
+
+        return $this;
+    }
+
+    public function getTown(): ?string
+    {
+        return $this->town;
+    }
+
+    public function setTown(string $town): self
+    {
+        $this->town = $town;
+
+        return $this;
+    }
+
     public function getPortraitFilename(): ?string
+    {
+        return $this->portraitFilename;
+    }
+
+    public function setPortraitFilename(?string $portraitFilename): self
+    {
+        $this->portraitFilename = $portraitFilename;
+
+        return $this;
+    }
+
+    public function getCoverFilename(): ?string
     {
         return $this->coverFilename;
     }
 
-    public function setPortraitFilename(?string $coverFilename): self
+    public function setCoverFilename(?string $coverFilename): self
     {
         $this->coverFilename = $coverFilename;
 
@@ -179,76 +269,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(?string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(?string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(?string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    public function getZippcode(): ?int
-    {
-        return $this->zippcode;
-    }
-
-    public function setZippcode(?int $zippcode): self
-    {
-        $this->zippcode = $zippcode;
-
-        return $this;
-    }
-
-    public function getTown(): ?string
-    {
-        return $this->town;
-    }
-
-    public function setTown(?string $town): self
-    {
-        $this->town = $town;
-
-        return $this;
-    }
 
 }
