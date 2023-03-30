@@ -80,16 +80,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $town;
 
-    /**
-     * @ORM\OneToMany(targetEntity=« App\Entity\Club », mappedBy=« user » ) 
-     */
-    private $Club;
-    
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -273,6 +263,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-
 }

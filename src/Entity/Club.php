@@ -69,21 +69,6 @@ class Club
      */
     private $map;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Skatepark::class, inversedBy="clubs")
-     */
-    private $skateparks;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user") 
-     */
-    private $user;
-
-    public function __construct()
-    {
-        $this->skateparks = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -208,27 +193,5 @@ class Club
         return $this;
     }
 
-    /**
-     * @return Collection|Skatepark[]
-     */
-    public function getSkateparks(): Collection
-    {
-        return $this->skateparks;
-    }
 
-    public function addSkatepark(Skatepark $skatepark): self
-    {
-        if (!$this->skateparks->contains($skatepark)) {
-            $this->skateparks[] = $skatepark;
-        }
-
-        return $this;
-    }
-
-    public function removeSkatepark(Skatepark $skatepark): self
-    {
-        $this->skateparks->removeElement($skatepark);
-
-        return $this;
-    }
 }
