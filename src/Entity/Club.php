@@ -74,6 +74,11 @@ class Club
      */
     private $skateparks;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\user") 
+     */
+    private $user;
+
     public function __construct()
     {
         $this->skateparks = new ArrayCollection();

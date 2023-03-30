@@ -79,6 +79,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $town;
+
+    /**
+     * @ORM\OneToMany(targetEntity=« App\Entity\Club », mappedBy=« user » ) 
+     */
+    private $Club;
     
     public function __construct()
     {
