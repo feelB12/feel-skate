@@ -37,7 +37,6 @@ class UserType extends AbstractType
             ->add('address')
             ->add('zippcode')
             ->add('town')
-            ->add('creator')
             ->add('coverFilename', FileType::class, [
                 'mapped' => false,
                 'required' => false,
