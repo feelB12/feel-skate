@@ -68,6 +68,10 @@ class Club
      * @ORM\Column(type="string", length=1000, nullable=true)
      */
     private $map;
+    /**
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy=« club »)
+    */
+    private $user;
 
     public function getId(): ?int
     {

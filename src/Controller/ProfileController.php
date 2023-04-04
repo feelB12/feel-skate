@@ -91,6 +91,47 @@ class ProfileController extends AbstractController
             'lastShops' =>$lastShops
         ]);
     }
+/**
+     * @Route("profile/search", name="profile_search")
+     */
+    public function profileSearch(SessionRepository $sessionRepository,ClubRepository $clubRepository, UserRepository $userRepository, Request $request)
+    {
+            // je récupère ce que tu l'utilisateur a recherché grâce à la classe Request
+            $word = $request->query->get('query');
+
+            // je fais ma requête en BDD grâce à la méthode que j'ai créée searchByTitle
+            $users = $userRepository->searchByTitle($word);
+            $clubs = $clubRepository->searchByTitle($word);
+            $sessions = $sessionRepository->searchByTitle($word);
+            $shops = $shopRepository->searchByTitle($word);
+            $skateparks = $skateparkRepository->searchByTitle($word);
+    
+            $lastSkateparks =$skateparkRepository->searchByTitle($word);
+            $lastSessions =$sessionRepository->searchByTitle($word);
+            $lastClubs =$clubRepository->searchByTitle($word);
+            $lastShops = $shopRepository->searchByTitle($word);
+            $lastUsers = $userRepository->searchByTitle($word);
+    
+            $users = $userRepository->findAll();
+            $skateparks = $skateparkRepository->findAll();
+            $sessions = $sessionRepository->findAll();
+            $clubs = $clubRepository->findAll();
+            $shops = $shopRepository->findAll();
+
+            return $this->render('profile/profile_search.html.twig', [
+                'clubs' => $clubs,
+                'skateparks' => $skateparks,
+                'sessions' => $sessions,
+                'shops' => $lastShops,
+                'lastClubs' => $lastClubs,
+                'lastSkateparks' => $lastSkateparks,
+                'lastSessions' => $lastSessions,
+                'lastShops' =>$lastShops,
+                'users' => $lastUsers,
+                'lastUsers' =>$lastUsers
+            ]);
+        }
+
     /**
      * @Route("profile/searchs", name="profile_search_all")
      */

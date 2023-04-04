@@ -80,6 +80,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $town;
 
+    /**
+    * @ORM\OneToMany(targetEntity=« App\Entity\Club », mappedBy=« user » ) 
+    */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
