@@ -80,6 +80,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $town;
 
+    /**
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $creator;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -164,6 +170,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTown(string $town): self
     {
         $this->town = $town;
+
+        return $this;
+    }
+
+    public function getCreator(): ?int
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(int $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }

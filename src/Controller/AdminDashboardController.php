@@ -4,26 +4,28 @@ namespace App\Controller;
 
 use App\Entity\Club;
 use App\Form\ClubType;
-use App\Entity\User;
-use App\Form\UserType;
 use App\Entity\Shop;
 use App\Form\ShopType;
 use App\Entity\Session;
 use App\Form\SessionType;
 use App\Entity\Skatepark;
 use App\Form\SkateparkType;
-
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\String\Slugger\SluggerInterface;
-
+use App\Entity\User;
+use App\Form\UserType;
 use App\Repository\UserRepository;
 use App\Repository\SessionRepository;
 use App\Repository\SkateparkRepository;
 use App\Repository\ClubRepository;
 use App\Repository\ShopRepository;
-use symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
-use symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class AdminDashboardController extends AbstractController
 {

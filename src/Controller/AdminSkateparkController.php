@@ -34,6 +34,9 @@ class  AdminSkateparkController extends AbstractController
         $skateparkForm->handleRequest($request);
 
         if ($skateparkForm->isSubmitted() && $skateparkForm->isValid()) {
+            //on enregistre l'entité en bdd avec entityManager (vu que l'instance de l'entite est reliée
+            // au form et que le formulaire est reliée à la class Request), Symfony va 
+            //automatiquement mettre les données du form dans l'instance de l'entité 
             // gestion de l'upload img
             // 1 recupérer les fichiers uploadé
             $coverFile = $skateparkForm->get('coverFilename')->getData();
@@ -56,12 +59,21 @@ class  AdminSkateparkController extends AbstractController
                     $skatepark->setCoverFilename($newFilename);
             }
 
+            //
             $entityManager->persist($skatepark);
             $entityManager->flush();
-        }
-        //$this->addFlash('error', "Le Skatepark existe déja ou... !");
-        $this->addFlash('success', "Le Skatepark a bien été créer !");
 
+            //permet d'enregistrer un message qui devra ensuite être affiché dans le twig
+            $this->addFlash('error', "Le Skatepark existe déja ou... !");
+            
+            //permet d'enregistrer un message qui devra ensuite être affiché dans le twig
+            $this->addFlash('success', "Le Skatepark a bien été créer !");
+
+            return $this->redirectToRoute('admin_skateparks');
+        }
+        
+        // j'envoie à mon twig la variable contenant le formulaire 
+        // préparé pour l'affichage (avec la méthode createView)
         return $this->render('admin/admin_skatepark_create.html.twig',[
             'skateparkForm' => $skateparkForm->createView()
         ]);
@@ -77,6 +89,9 @@ class  AdminSkateparkController extends AbstractController
         $skateparkForm->handleRequest($request);
 
         if ($skateparkForm->isSubmitted() && $skateparkForm->isValid()) {
+            // on enregistre l'entité en bdd avec entityManager (vu que l'instance de l'entite est reliée
+            // au form et que le formulaire est reliée à la class Request), Symfony va 
+            //automatiquement mettre les données du form dans l'instance de l'entité 
             // gestion de l'upload img
             // 1 recupérer les fichiers uploadé
             $coverFile = $skateparkForm->get('coverFilename')->getData();
@@ -102,10 +117,21 @@ class  AdminSkateparkController extends AbstractController
             $entityManager->persist($skatepark);
             $entityManager->flush();
 
-        }
-        // $this->addFlash('error', "les champ n'ont pas tous été modifié!");
-        $this->addFlash('success', "Le Skatepark a bien été modifié !");
+            //permet d'enregistrer un message qui devra ensuite être affiché dans le twig
+            //$this->addFlash('error', "les champ n'ont pas tous été modifié!");
 
+            //permet d'enregistrer un message qui devra ensuite être affiché dans le twig
+            //$this->addFlash('success', "Le Skatepark a bien été modifié !");
+            
+            
+            //return $this->redirectToRoute('admin_skatepark', [$id]);
+            $skatepark = $skateparkRepository->find($id);
+             return $this->render('admin/admin_skatepark.html.twig', [
+                    'skatepark' => $skatepark
+            ]);
+        }
+        // j'envoie à mon twig la variable contenant le formulaire 
+        // préparé pour l'affichage (avec la méthode createView)
         return $this->render('admin/admin_skatepark_update.html.twig',[
             'skateparkForm' => $skateparkForm->createView()
         ]);

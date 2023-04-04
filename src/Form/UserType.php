@@ -4,8 +4,6 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
-
 use Symfony\Component\Form\Extension\Core\Type\Type;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -30,6 +28,7 @@ class UserType extends AbstractType
                 'choices'  => [
                     'User' => 'ROLE_USER',
                     'Admin' => 'ROLE_ADMIN',
+                    'SuperAdmin' => 'ROLE_SUPER_ADMIN',
                 ],
             ])
             ->add('name')
@@ -38,6 +37,7 @@ class UserType extends AbstractType
             ->add('address')
             ->add('zippcode')
             ->add('town')
+            ->add('creator')
             ->add('coverFilename', FileType::class, [
                 'mapped' => false,
                 'required' => false,

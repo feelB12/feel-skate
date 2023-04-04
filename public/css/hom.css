@@ -96,6 +96,16 @@ table {
     font-size: 1rem;
 }
 
+.alert-success{
+	margin-top: 10vh;
+	color: #38ff3b;
+}
+
+.alert-error{
+	margin-top: 10vh;
+	color: #ff3502;
+}
+
 /* Id */
 
 #logo {

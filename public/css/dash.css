@@ -1935,3 +1935,7 @@ hr {
 .py-15 {
   padding: 15px 0;
 }
+.circle{
+  max-height:70px;
+  max-width:70px;
+}
