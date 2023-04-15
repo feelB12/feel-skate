@@ -84,6 +84,11 @@ class Session
      */
     private $latitudeFinishAt;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="session")
+    */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,7 +98,10 @@ class Session
     {
         return $this->title;
     }
-
+    public function getUser(): ?int
+    {
+        return $this->user;
+    }
     public function setTitle(string $title): self
     {
         $this->title = $title;

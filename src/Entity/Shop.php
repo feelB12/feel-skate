@@ -62,11 +62,19 @@ class Shop
      */
     private $latitude;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="shop")
+    */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    public function getUser(): ?int
+    {
+        return $this->user;
+    }
     public function getTitle(): ?string
     {
         return $this->title;

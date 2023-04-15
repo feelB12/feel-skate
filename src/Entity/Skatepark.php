@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\SkateparkRepository;
 
+
 /**
  * @ORM\Entity(repositoryClass=SkateparkRepository::class)
  */
@@ -69,6 +70,12 @@ class Skatepark
      */
     private $categories;
 
+   
+    /**
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="skatepark")
+    */
+    private $user;
+
     /**
      * @ORM\ManyToMany(targetEntity=Club::class, mappedBy="skateparks")
      */
@@ -84,7 +91,7 @@ class Skatepark
     {
         return $this->id;
     }
-
+    
     public function getTitle(): ?string
     {
         return $this->title;
@@ -246,4 +253,5 @@ class Skatepark
 
         return $this;
     }
+
 }

@@ -6,6 +6,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ClubRepository;
+use App\Repository\SessionRepository;
+use App\Repository\SkateparkRepository;
+use App\Repository\ShopRepository;
+use App\Repository\UserRepository;
 
 /**
  * @ORM\Entity(repositoryClass=ClubRepository::class)
@@ -69,13 +73,18 @@ class Club
      */
     private $map;
     /**
-    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy=« club »)
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="club")
     */
     private $user;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getUser(): ?int
+    {
+        return $this->user;
     }
 
     public function getTitle(): ?string

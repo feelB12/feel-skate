@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Skatepark;
+use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -23,6 +24,10 @@ class SkateparkType extends AbstractType
             ->add('area')
             ->add('longitude')
             ->add('latitude')
+            ->add('user', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'id'
+            ])
             ->add('coverFilename', FileType::class, [
                 'mapped' => false,
                 'required' => false,

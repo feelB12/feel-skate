@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
-
+use App\Repository\SessionRepository;
+use App\Repository\SkateparkRepository;
+use App\Repository\ShopRepository;
+use App\Repository\ClubRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -81,13 +84,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $town;
 
     /**
-    * @ORM\OneToMany(targetEntity=« App\Entity\Club », mappedBy=« user » ) 
+    * @ORM\OneToMany(targetEntity="App\Entity\Club", mappedBy="user")
+    * @ORM\OneToMany(targetEntity="App\Entity\Shop", mappedBy="user")
+    * @ORM\OneToMany(targetEntity="App\Entity\Session", mappedBy="user")
+    * @ORM\OneToMany(targetEntity="App\Entity\Skatepark", mappedBy="user")
+    * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="user") 
     */
     private $user;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function getUser(): ?int
+    {
+        return $this->user;
     }
 
     public function getEmail(): ?string
