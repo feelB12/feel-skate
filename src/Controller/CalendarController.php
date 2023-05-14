@@ -1,24 +1,66 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
-use App\Date;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\String\Slugger\SluggerInterface;
+use App\CalendarEvents;
+use App\Event\CalendarEvent;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Serializer\SerializerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface as ContractsEventDispatcherInterface;
 
 class CalendarController extends AbstractController
 {
     /**
-     * @Route("calendar", name="calendar", methods={"GET"})
+     * @var SerializerInterface
      */
-    public function Calendrier()
-    {
-        
-        return $this->render('calendar/calendar.html.twig');
+    protected $serializer;
 
-        //return $this->redirectToRoute("calendrier");
+    /**
+     * @var EventDispatcherInterface
+     */
+    protected $eventDispatcher;
+
+    public function __construct(
+        EventDispatcherInterface $eventDispatcher,
+        SerializerInterface $serializer
+    ) {
+        $this->eventDispatcher = $eventDispatcher;
+        $this->serializer = $serializer;
+    }
+
+    public function loadAction(Request $request): Response
+    {
+        $start = new \DateTime($request->get('start'));
+        $end = new \DateTime($request->get('end'));
+        $filters = $request->get('filters', '{}');
+        $filters = \is_array($filters) ? $filters : json_decode($filters, true);
+
+        $event = $this->dispatchWithBC(
+            new CalendarEvent($start, $end, $filters),
+            CalendarEvents::SET_DATA
+        );
+        $content = $this->serializer->serialize($event->getEvents());
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+        $response->setContent($content);
+        $response->setStatusCode(empty($content) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK);
+
+        return $response;
+    }
+
+    public function dispatchWithBC($event, ?string $eventName = null)
+    {
+        if ($this->eventDispatcher instanceof ContractsEventDispatcherInterface) {
+            return $this->eventDispatcher->dispatch($event, $eventName);
+        }
+
+        return $this->eventDispatcher->dispatch($eventName, $event);
     }
 }

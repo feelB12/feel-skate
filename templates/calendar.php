@@ -17,7 +17,7 @@
 <main id="main">
    {% block main %}
 <nav class="navbar navbar-dark bg-primary mb-3">
-   <a href="/calendar.php" class="navbar-brand"> Brigadier Calendrier</a>
+   <a href="/calendar/index.php" class="navbar-brand"> Brigadier Calendrier</a>
 </nav>
 
 <?php 
@@ -30,8 +30,8 @@ $start = $start->format('N') === '1' ? $start : $month->getStartingDay()->modify
 <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
    <h1><?= $month->toString(); ?></h1>
    <div>
-      <a href="/calendar.php?month=<?= $month->previousMonth()->month; ?>&year=<?= $month->previousMonth()->year; ?>" class="btn btn-primary">&lt;</a>
-      <a href="/calendar.php?month=<?= $month->nextMonth()->month; ?>&year=<?= $month->nextMonth()->year; ?>" class="btn btn-primary">&gt;</a>
+      <a href="/calendar/index.php?month=<?= $month->previousMonth()->month; ?>&year=<?= $month->previousMonth()->year; ?>" class="btn btn-primary">&lt;</a>
+      <a href="/calendar/index.php?month=<?= $month->nextMonth()->month; ?>&year=<?= $month->nextMonth()->year; ?>" class="btn btn-primary">&gt;</a>
    </div>
 </div>
 
