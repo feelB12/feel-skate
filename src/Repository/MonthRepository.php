@@ -44,10 +44,12 @@ class MonthRepository extends ServiceEntityRepository
 
     /**
      * Renvoie le premier jour du mois
-     * @return \DateTime
+     * @param \DateTimeInterface
+     * @return \DateTimeInterface 
      */
-    public function getStartingDay (): \DateTime {
-        return new \DateTime("{$this->year}-{$this->month}-01");
+    public function getStartingDay (): \DateTimeInterface 
+    {
+        return new \DateTimeImmutable("{$this->year}-{$this->month}-01");
     }
 
     /**
@@ -61,12 +63,19 @@ class MonthRepository extends ServiceEntityRepository
 
     /**
      * Renvoie le nombre de semaine dans le mois 
-     * @return int
+     * @return int $weeks
      */
-    public function getWeeks (): int {
-        $start = new \DateTime("{$this->year}-{$this->month}-01");
-        $end = (clone $start)->modify('+1 month -1 day');
-        $weeks = intval($end->format('W')) - intval($start->format('W')) + 1;
+    public function getWeeks (): int 
+    {
+        $start = $this->getStartingDay();
+        $end = $start->modify('+1 month -1 day');
+        
+        $startWeek = intval($start->format('W'));
+        $endWeek = intval($end->format('W'));
+        if ($endWeek === 1) {
+            $endWeek = intval($end->modify('- 7 days')->format('W')) + 1 ;
+        }
+        $weeks = $endWeek - $startWeek + 1;
         if ($weeks < 0) {
             $weeks = intval($end->format('W'));
         }
@@ -79,7 +88,7 @@ class MonthRepository extends ServiceEntityRepository
      */
     public function getDays (): int {
         $startday = new \DateTime("{$this->week}-{$this->day}-01");
-        $endday = (clone $startday)->modify('+1 week -1 day');
+        $endday = $startday->modify('+1 week -1 day');
         $weeksday = intval($endday->format('D')) - intval($startday->format('D')) + 1;
         if ($weeksday < 0) {
             $weeksday = intval($endday->format('D'));
@@ -89,11 +98,12 @@ class MonthRepository extends ServiceEntityRepository
 
     /**
      * Est ce que le jour est dans le mois en cours
-     * @param \DateTime $date
+     * @param \DateTimeInterface $date
      * @return bool
+     * @throws \Exception
      */
-    public function withinMonth (\DateTime $date): bool {
-        return $this ->getStartingDay()->format('Y-m') === $date->format('Y-m');
+    public function withinMonth (\DateTimeInterface $date): bool {
+        return $this->getStartingDay()->format('Y-m') === $date->format('Y-m');
     }
 
     /**
@@ -112,7 +122,7 @@ class MonthRepository extends ServiceEntityRepository
     }
 
     /**
-     * Return prévious month 
+     * Return previous month 
      * @return Month
      */
 

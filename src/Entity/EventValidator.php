@@ -1,6 +1,6 @@
 <?php
 
-Namespace App\Calendar;
+namespace App\Entity;
 
 use Validator;
 

@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block metatitle %}
-    Agenda | Skateboard Social Club
+    Calendar Event | Skateboard Social Club
 {% endblock metatitle %}
 
 {% block link %}
@@ -19,5 +19,5 @@
 {# {% endblock javascripts %} #}
 
 {% block main %}
-    <div id='calendar'>{% include 'index.php' %}</div>
+    <div id='calendar'>{% include 'calendar/event.php' %}</div>
 {% endblock main %}

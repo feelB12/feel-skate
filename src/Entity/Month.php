@@ -18,10 +18,10 @@ class Month
     private $id;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="integer")
      */
-    private $day = [];
-
+    public $day;
+    
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -31,6 +31,11 @@ class Month
      * @ORM\Column(type="array")
      */
     public $days = ['Lundi','Mardi', 'Mercredi', 'Jeudi','Vendredi','Samedi', 'Dimanche'];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre','Novembre','Décembre'];
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -43,9 +48,9 @@ class Month
     private $date;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="datetime")
      */
-    private $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre','Novembre','Décembre'];
+    private $start;
 
     /**
      * @ORM\Column(type="datetime")
@@ -53,9 +58,9 @@ class Month
     private $end;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="integer")
      */
-    private $start;
+    private $week;
 
     /**
      * @ORM\Column(type="integer")
@@ -82,36 +87,24 @@ class Month
         return $this->id;
     }
 
-    public function getDay(): ?array
-    {
-        return $this->day;
-    }
-
-    public function setDay(array $day): self
-    {
-        $this->day = $day;
-
-        return $this;
-    }
-
     public function getMonth(): ?int
     {
         return $this->month;
     }
 
-    public function setMonth(int $month): self
+    public function setMonth(?int $month): self
     {
         $this->month = $month;
 
         return $this;
     }
 
-    public function getMonths(): ?array
+    public function getMonths(): ?int
     {
         return $this->months;
     }
 
-    public function setMonths(array $months): self
+    public function setMonths(?int $months): self
     {
         $this->months = $months;
 
@@ -123,7 +116,7 @@ class Month
         return $this->year;
     }
 
-    public function setYear(int $month): self
+    public function setYear(?int $year): self
     {
         $this->year = $year;
 
@@ -142,12 +135,12 @@ class Month
         return $this;
     }
 
-    public function getDays(): ?array
+    public function getDays(): int
     {
         return $this->days;
     }
 
-    public function setDays(array $days): self
+    public function setDays(int $days): self
     {
         $this->days = $days;
 

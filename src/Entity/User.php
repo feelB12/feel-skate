@@ -89,6 +89,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     * @ORM\OneToMany(targetEntity="App\Entity\Session", mappedBy="user")
     * @ORM\OneToMany(targetEntity="App\Entity\Skatepark", mappedBy="user")
     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="user") 
+    * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="user")
     */
     private $user;
 

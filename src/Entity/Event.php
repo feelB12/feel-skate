@@ -1,171 +1,365 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Entity;
 
-use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EventRepository;
+use App\Repository\ClubRepository;
+use App\Repository\SessionRepository;
+use App\Repository\SkateparkRepository;
+use App\Repository\ShopRepository;
+use App\Repository\UserRepository;
 
+
+/**
+ * @ORM\Entity(repositoryClass=EventRepository::class)
+ */
 class Event
 {
-    public const DATE_FORMAT = 'Y-m-d\\TH:i:s.u\\Z';
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      */
-    protected $title;
+    private $name;
 
     /**
-     * @var DateTimeInterface
+     * @ORM\Column(type="string", length=1000, nullable=true)
      */
-    protected $start;
+    private $descrption;
 
     /**
-     * @var DateTimeInterface|null
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    protected $end;
+    private $start;
 
     /**
-     * @var bool
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    protected $allDay = true;
+    private $end;
 
     /**
-     * @var array
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    protected $options = [];
+    private $hide;
 
     /**
-     * @var string
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    protected $resourceId;
+    private $is_published;
 
-    public function __construct(
-        string $title,
-        DateTimeInterface $start,
-        ?DateTimeInterface $end = null,
-        ?string $resourceId = null,
-        array $options = []
-    ) {
-        $this->setTitle($title);
-        $this->setStart($start);
-        $this->setEnd($end);
-        $this->setResourceId($resourceId);
-        $this->setOptions($options);
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $zippcode;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $town;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $area;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $startAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $finishedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $coverFilename;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longitudeStartAt;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latitudeStartAt;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longitudeFinishAt;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latitudeFinishAt;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="event")
+    */
+    private $user;
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getName(): string
     {
-        return $this->title;
+        return $this->name;
     }
 
-    public function setTitle(string $title): void
+    public function setName (string $name): self
     {
-        $this->title = $title;
+        $this->name = $name;
+
+        return $this;
+    }
+    public function getUser(): ?int
+    {
+        return $this->user;
     }
 
-    public function getStart(): ?DateTimeInterface
+    public function getDescription(): ?string
     {
+        return $this->description;
+    }
+
+    public function setDescription (string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function setStart (string $start): self 
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    public function getStart(): ?\DateTimeInterface
+    {
+        return new \DateTimeImmutable($this->start);
+
         return $this->start;
     }
 
-    public function setStart(DateTimeInterface $start): void
+    public function setEnd (string $end): self 
     {
-        $this->start = $start;
-    }
-
-    public function getEnd(): ?DateTimeInterface
-    {
-        return $this->end;
-    }
-
-    public function setEnd(?DateTimeInterface $end): void
-    {
-        if (null !== $end) {
-            $this->allDay = false;
-        }
         $this->end = $end;
     }
 
-    public function isAllDay(): bool
+    public function getEnd(): ?\DateTimeInterface
     {
-        return $this->allDay;
+        return new \DateTimeImmutable($this->end);
+        
+        return $this->end;
     }
 
-    public function setAllDay(bool $allDay): void
+    public function setHide (string $hide): self
     {
-        $this->allDay = $allDay;
+        $this->hide = $hide;
     }
 
-    public function getResourceId(): ?string
+    public function getHide(): \DateTimeInterface
     {
-        return $this->resourceId;
+        return new \DateTimeImmutable($this->hide ?? '');
+        
+        return $this->hide;
     }
 
-    public function setResourceId(?string $resourceId): void
-    {
-        $this->resourceId = $resourceId;
+    public function setPublished (string $is_published): self {
+        $this->is_published = $is_published;
     }
 
-    public function getOptions(): array
+    public function getPublished(): \DateTimeInterface
     {
-        return $this->options;
+        return new \DateTimeImmutable($this->is_published ?? '');
+
     }
 
-    public function setOptions(array $options): void
+    public function setStatus (string $status): self 
     {
-        $this->options = $options;
+        $this->status = $status;
+        
+        return $this;
     }
 
-    /**
-     * @param string|int $name
-     */
-    public function getOption($name)
+    public function getStatus(): ?string 
     {
-        return $this->options[$name];
+        return $this->status;
     }
 
-    /**
-     * @param string|int $name
-     */
-    public function addOption($name, $value): void
+    public function setCreateded (string $created_at): self
     {
-        $this->options[$name] = $value;
+        $this->created_at = $created_at;
+        
+        return $this;
     }
 
-    /**
-     * @param string|int $name
-     *
-     * @return mixed|null
-     */
-    public function removeOption($name)
+    public function getCreated(): \DateTimeInterface
     {
-        if (!isset($this->options[$name]) && !\array_key_exists($name, $this->options)) {
-            return null;
-        }
-
-        $removed = $this->options[$name];
-        unset($this->options[$name]);
-
-        return $removed;
+        return new \DateTimeImmutable($this->created_at ?? '');
     }
 
-    public function toArray(): array
+    public function getAddress(): ?string
     {
-        $event = [
-            'title' => $this->getTitle(),
-            'start' => $this->getStart()->format(self::DATE_FORMAT),
-            'allDay' => $this->isAllDay(),
-        ];
-
-        if (null !== $this->getEnd()) {
-            $event['end'] = $this->getEnd()->format(self::DATE_FORMAT);
-        }
-
-        if (null !== $this->getResourceId()) {
-            $event['resourceId'] = $this->getResourceId();
-        }
-
-        return array_merge($event, $this->getOptions());
+        return $this->address;
     }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getZippcode(): ?int
+    {
+        return $this->zippcode;
+    }
+
+    public function setZippcode(int $zippcode): self
+    {
+        $this->zippcode = $zippcode;
+
+        return $this;
+    }
+
+    public function getTown(): ?string
+    {
+        return $this->town;
+    }
+
+    public function setTown(string $town): self
+    {
+        $this->town = $town;
+
+        return $this;
+    }
+
+    public function getArea(): ?string
+    {
+        return $this->area;
+    }
+
+    public function setArea(string $area): self
+    {
+        $this->area = $area;
+
+        return $this;
+    }
+
+    public function getStartAt(): ?\DateTimeInterface
+    {
+        return $this->startAt;
+    }
+
+    public function setStartAt(?\DateTimeInterface $startAt): self
+    {
+        $this->startAt = $startAt;
+
+        return $this;
+    }
+
+    public function getFinishedAt(): ?\DateTimeInterface
+    {
+        return $this->finishedAt;
+    }
+
+    public function setFinishedAt(?\DateTimeInterface $finishedAt): self
+    {
+        $this->finishedAt = $finishedAt;
+
+        return $this;
+    }
+
+    public function getCoverFilename(): ?string
+    {
+        return $this->coverFilename;
+    }
+
+    public function setCoverFilename(?string $coverFilename): self
+    {
+        $this->coverFilename = $coverFilename;
+
+        return $this;
+    }
+
+    public function getLongitudeStartAt(): ?float
+    {
+        return $this->longitudeStartAt;
+    }
+
+    public function setLongitudeStartAt(?float $longitudeStartAt): self
+    {
+        $this->longitudeStartAt = $longitudeStartAt;
+
+        return $this;
+    }
+
+    public function getLatitudeStartAt(): ?float
+    {
+        return $this->latitudeStartAt;
+    }
+
+    public function setLatitudeStartAt(?float $latitudeStartAt): self
+    {
+        $this->latitudeStartAt = $latitudeStartAt;
+
+        return $this;
+    }
+
+    public function getLongitudeFinishAt(): ?float
+    {
+        return $this->longitudeFinishAt;
+    }
+
+    public function setLongitudeFinishAt(?float $longitudeFinishAt): self
+    {
+        $this->longitudeFinishAt = $longitudeFinishAt;
+
+        return $this;
+    }
+
+    public function getLatitudeFinishAt(): ?float
+    {
+        return $this->latitudeFinishAt;
+    }
+
+    public function setLatitudeFinishAt(?float $latitudeFinishAt): self
+    {
+        $this->latitudeFinishAt = $latitudeFinishAt;
+
+        return $this;
+    }
+
 }
