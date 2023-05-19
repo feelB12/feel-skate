@@ -2,16 +2,10 @@
 
 namespace App\Entity;
 
+use App\Repository\EventRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use App\Repository\EventRepository;
-use App\Repository\ClubRepository;
-use App\Repository\SessionRepository;
-use App\Repository\SkateparkRepository;
-use App\Repository\ShopRepository;
-use App\Repository\UserRepository;
-
 
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
@@ -33,40 +27,40 @@ class Event
     /**
      * @ORM\Column(type="string", length=1000, nullable=true)
      */
-    private $descrption;
+    private $description;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $start;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $end;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $hide;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $is_published;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $created_at;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $status;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
 
@@ -86,14 +80,14 @@ class Event
     private $area;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $startAt;
+    private $start_at;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $finishedAt;
+    private $finish_at;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -103,47 +97,48 @@ class Event
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $longitudeStartAt;
+    private $longitudeStart_at;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $latitudeStartAt;
+    private $latitudeStart_at;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $longitudeFinishAt;
+    private $longitudeFinish_at;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $latitudeFinishAt;
+    private $latitudeFinish_at;
 
     /**
     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="event")
     */
     private $user;
 
+    public function getUser(): ?int
+    {
+        return $this->user;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName (string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
-    }
-    public function getUser(): ?int
-    {
-        return $this->user;
     }
 
     public function getDescription(): ?string
@@ -151,83 +146,83 @@ class Event
         return $this->description;
     }
 
-    public function setDescription (string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function setStart (string $start): self 
+    public function getStart(): ?\DateTimeImmutable
+    {
+        return $this->start;
+    }
+
+    public function setStart(?\DateTimeImmutable $start): self
     {
         $this->start = $start;
 
         return $this;
     }
 
-    public function getStart(): ?\DateTimeInterface
+    public function getEnd(): ?\DateTimeImmutable
     {
-        return new \DateTimeImmutable($this->start);
-
-        return $this->start;
-    }
-
-    public function setEnd (string $end): self 
-    {
-        $this->end = $end;
-    }
-
-    public function getEnd(): ?\DateTimeInterface
-    {
-        return new \DateTimeImmutable($this->end);
-        
         return $this->end;
     }
 
-    public function setHide (string $hide): self
+    public function setEnd(?\DateTimeImmutable $end): self
     {
-        $this->hide = $hide;
-    }
+        $this->end = $end;
 
-    public function getHide(): \DateTimeInterface
-    {
-        return new \DateTimeImmutable($this->hide ?? '');
-        
-        return $this->hide;
-    }
-
-    public function setPublished (string $is_published): self {
-        $this->is_published = $is_published;
-    }
-
-    public function getPublished(): \DateTimeInterface
-    {
-        return new \DateTimeImmutable($this->is_published ?? '');
-
-    }
-
-    public function setStatus (string $status): self 
-    {
-        $this->status = $status;
-        
         return $this;
     }
 
-    public function getStatus(): ?string 
+    public function getHide(): ?\DateTimeImmutable
+    {
+        return $this->hide;
+    }
+
+    public function setHide(?\DateTimeImmutable $hide): self
+    {
+        $this->hide = $hide;
+
+        return $this;
+    }
+
+    public function getPublished(): ?\DateTimeImmutable
+    {
+        return $this->is_published;
+    }
+
+    public function setPublished(?\DateTimeImmutable $is_published): self
+    {
+        $this->is_published = $is_published;
+
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreated(?\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    public function setCreateded (string $created_at): self
+    public function setStatus(?string $status): self
     {
-        $this->created_at = $created_at;
-        
-        return $this;
-    }
+        $this->status = $status;
 
-    public function getCreated(): \DateTimeInterface
-    {
-        return new \DateTimeImmutable($this->created_at ?? '');
+        return $this;
     }
 
     public function getAddress(): ?string
@@ -235,7 +230,7 @@ class Event
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    public function setAddress(?string $address): self
     {
         $this->address = $address;
 
@@ -278,26 +273,26 @@ class Event
         return $this;
     }
 
-    public function getStartAt(): ?\DateTimeInterface
+    public function getStartAt(): ?\DateTimeImmutable
     {
-        return $this->startAt;
+        return $this->start_at;
     }
 
-    public function setStartAt(?\DateTimeInterface $startAt): self
+    public function setStartAt(?\DateTimeImmutable $start_at): self
     {
-        $this->startAt = $startAt;
+        $this->start_at = $start_at;
 
         return $this;
     }
 
-    public function getFinishedAt(): ?\DateTimeInterface
+    public function getFinishAt(): ?\DateTimeImmutable
     {
-        return $this->finishedAt;
+        return $this->finish_at;
     }
 
-    public function setFinishedAt(?\DateTimeInterface $finishedAt): self
+    public function setFinishAt(?\DateTimeImmutable $finish_at): self
     {
-        $this->finishedAt = $finishedAt;
+        $this->finish_at = $finish_at;
 
         return $this;
     }
@@ -316,50 +311,49 @@ class Event
 
     public function getLongitudeStartAt(): ?float
     {
-        return $this->longitudeStartAt;
+        return $this->longitudeStart_at;
     }
 
-    public function setLongitudeStartAt(?float $longitudeStartAt): self
+    public function setLongitudeStartAt(?float $longitudeStart_at): self
     {
-        $this->longitudeStartAt = $longitudeStartAt;
+        $this->longitudeStart_at = $longitudeStart_at;
 
         return $this;
     }
 
     public function getLatitudeStartAt(): ?float
     {
-        return $this->latitudeStartAt;
+        return $this->latitudeStart_at;
     }
 
-    public function setLatitudeStartAt(?float $latitudeStartAt): self
+    public function setLatitudeStartAt(?float $latitudeStart_at): self
     {
-        $this->latitudeStartAt = $latitudeStartAt;
+        $this->latitudeStar_at = $latitudeStart_at;
 
         return $this;
     }
 
     public function getLongitudeFinishAt(): ?float
     {
-        return $this->longitudeFinishAt;
+        return $this->longitudeFinish_at;
     }
 
-    public function setLongitudeFinishAt(?float $longitudeFinishAt): self
+    public function setLongitudeFinishAt(?float $longitudeFinish_at): self
     {
-        $this->longitudeFinishAt = $longitudeFinishAt;
+        $this->longitudeFinish_at = $longitudeFinish_at;
 
         return $this;
     }
 
     public function getLatitudeFinishAt(): ?float
     {
-        return $this->latitudeFinishAt;
+        return $this->latitudeFinish_at;
     }
 
-    public function setLatitudeFinishAt(?float $latitudeFinishAt): self
+    public function setLatitudeFinishAt(?float $latitudeFinish_at): self
     {
-        $this->latitudeFinishAt = $latitudeFinishAt;
+        $this->latitudeFinish_at = $latitudeFinish_at;
 
         return $this;
     }
-
 }

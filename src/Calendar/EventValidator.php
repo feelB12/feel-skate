@@ -1,8 +1,8 @@
 <?php
 
-Namespace App\Calendar;
+namespace App\Calendar;
 
-use Validator;
+use App\Calendar\Validator;
 
 Class EventValidator extends Validator {
 

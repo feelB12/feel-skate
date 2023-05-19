@@ -7,6 +7,7 @@ use App\Repository\SkateparkRepository;
 use App\Repository\ShopRepository;
 use App\Repository\ClubRepository;
 use App\Repository\UserRepository;
+use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

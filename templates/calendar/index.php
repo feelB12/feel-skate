@@ -20,6 +20,9 @@
    <a href="index.php" class="navbar-brand"> Brigadier Calendrier</a>
 </nav>
 
+<h1>Mai 2023</h1>
+
+
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors',1);
@@ -27,19 +30,19 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_startup_errors',1);
 error_reporting(-1);
 
-require '../src/App/bootstrap.php';
-require '../src/Calendar/Month.php';
-require '../src/Calendar/Events.php';
+require '../../src/Bootstrap.php';
+require '../../src/Calendar/Month.php';
+require '../../src/Calendar/Events.php';
 
-use Calendar\{
+use App\Calendar\{
    Events,
    Month   
 };
 
 $pdo = get_pdo();
-$events = new Events($pdo);
+$events = new App\Calendar\Events($pdo);
 
-$month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null);
+$month = new App\Calendar\Month($_GET['month'] ?? null, $_GET['year'] ?? null);
 $start = $month->getStartingDay();
 $start = $start->format('N') === '1' ? $start : $month->getStartingDay()->modify('last monday');
 $weeks = $month->getWeeks();

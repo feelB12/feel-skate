@@ -1,6 +1,6 @@
 <?php
 
-Namespace App\App;
+Namespace App\Calendar;
 
 Class Validator {
 

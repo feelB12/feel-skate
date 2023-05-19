@@ -2,6 +2,14 @@
 
 Namespace App\Calendar;
 
+use App\Calendar\Validator;
+use App\Calendar\EventValidator;
+use App\Entity\Event;
+use App\Repository\EventRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+
+#[AsController]
 class Events {
 
     private $pdo;
@@ -76,7 +84,22 @@ class Events {
         $event->setDescription($data['description']);
         $event->setStart(\DateTimeImmutable::createFromFormat('Y-m-d H:i', $data['date'] . ' ' . $data['start'])->format('Y-m-d H:i:s'));
         $event->setEnd(\DateTimeImmutable::createFromFormat('Y-m-d H:i', $data['date'] . ' ' . $data['end'])->format('Y-m-d H:i:s'));   
+        $event->setHide($data['hide']);
+        $event->setPublished($data['is_published']);
+        $event->setCreated($data['create_at']);
         $event->setStatus($data['status']);
+        $event->setAddress($data['address']);
+        $event->setZippcode($data['zippcode']);
+        $event->setTown($data['town']);
+        $event->setArea($data['area']);
+        $event->setStartAt($data['start_at']);
+        $event->setFinishAt($data['finish_at']);
+        $event->setCoverFilename($data['coverFilname']);
+        $event->setLongitudeStartAt($data['longitudeStart_at']);
+        $event->setLatitudeStartAt($data['latitudeStart_at']);
+        $event->setLongitudeFinishAt($data['longitudeFinish_at']);
+        $event->setLatitudeFinishAt($data['latitudeFinish_at']);
+        $event->setUser($data['name']);
       
         return $event;
     }
@@ -87,7 +110,7 @@ class Events {
      * @throws bool
      */
     public function create (Event $event): bool {
-        $statement = $this->pdo->prepare('INSERT INTO events (name, description, start, end, hide, is_published, status, created_at ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $statement = $this->pdo->prepare('INSERT INTO events (name, description, start, end, hide, is_published, created_at, status, address, zippcode, town, area, start_at, finish_at, coverFilename, longitude_start_at, latitude_start_at, longitude_finish_at, latitude_finish_at ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
         return $statement->execute([
             $event->getName(),
             $event->getDescription(),
@@ -95,8 +118,19 @@ class Events {
             $event->getEnd()->format('Y-m-d H:i:s'),
             $event->getHide()->format('Y-m-d H:i:s'),
             $event->getPublished()->format('Y-m-d H:i:s'),
-            $event->getStatus(),
-            $event->getCreated()->format('Y-m-d H:i:s')
+            $event->getCreated()->format('Y-m-d H:i:s'),
+            $event->getStatus()->format('Y-m-d H:i:s'),
+            $event->getAddress(),
+            $event->getZippcode(),
+            $event->getTown(),
+            $event->getArea(),
+            $event->getStartAt()->format('Y-m-d H:i:s'),
+            $event->getFinishAt()->format('Y-m-d H:i:s'),
+            $event->getCoverFilname(),
+            $event->getLongitudeStartAt(),
+            $event->getLatitudeStartAt(),
+            $event->getLongitudeFinishAt(),
+            $event->getLatitudeFinishAt()
         ]);
     }
 
@@ -106,7 +140,7 @@ class Events {
      * @throws bool
      */
     public function update (Event $event): bool {
-        $statement = $this->pdo->prepare('UPDATE events SET name = ? , description = ? , start = ? , end = ? , hide = ? , is_published = ? , created_at = ?, status = ? WHERE id = ?');
+        $statement = $this->pdo->prepare('UPDATE events SET name = ? , description = ? , start = ? , end = ? , hide = ? , is_published = ? , created_at = ?, status = ?, address = ?, zippcode = ?, area = ?, start_at = ?, finish_at = ?, coverFilename = ?, longitudeStart_at = ?, latitudeStart_at = ?, longitudeFinish_at = ?, latitudeFinish_at = ? WHERE id = ?');
         return $statement->execute([
             $event->getName(),
             $event->getDescription(),
@@ -115,7 +149,18 @@ class Events {
             $event->getHide()->format('Y-m-d H:i:s'),
             $event->getPublished()->format('Y-m-d H:i:s'),
             $event->getCreated()->format('Y-m-d H:i:s'),
-            $event->getStatus(),
+            $event->getStatus()->format('Y-m-d H:i:s'),
+            $event->getAddress(),
+            $event->getZippcode(),
+            $event->getTown(),
+            $event->getArea(),
+            $event->getStartAt()->format('Y-m-d H:i:s'),
+            $event->getFinishAt()->format('Y-m-d H:i:s'),
+            $event->getCoverFilname(),
+            $event->getLongitudeStartAt(),
+            $event->getLatitudeStartAt(),
+            $event->getLongitudeFinishAt(),
+            $event->getLatitudeFinishAt(),
             $event->getId()
         ]);
     }

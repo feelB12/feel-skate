@@ -72,7 +72,6 @@ class Month {
      */
     public function getWeeks (): int 
     {
-        
         $start = $this->getStartingDay();
         $end = $start->modify('+1 month -1 day');
         

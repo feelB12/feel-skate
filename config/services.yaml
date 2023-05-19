@@ -23,9 +23,11 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-    App\App\:
-        resource: '../src/App/'
-
+    App\Calendar\:
+        resource: '../src/Calendar'
+        exclude:
+            - '../src/DependencyInjection/'
+    
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     # config/services.yaml

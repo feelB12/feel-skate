@@ -1,0 +1,83 @@
+{% extends "base.html.twig" %}
+
+{% block metatitle %}
+    Events | Skateboard Social Club
+{% endblock metatitle %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/hom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block main %}
+    <section class="section">
+        <div id="ico">
+            <div class="element">
+                <a href="{{ path('events') }}">
+                    <img class="logoBig" src="{{ asset('icon/events_titre.png') }}" alt="Event">
+                </a>
+            </div>
+            <div class="element">
+                <a href="{{ path('events') }}">
+                    <img class="logoBig" src="{{ asset('icon/event.png') }}" alt="Event-icon">
+                </a>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="cadre">
+            {% block search %}
+                <form action="{{ path('search_events') }}">
+                    <div id="divSearch" class="conteneur">
+                        <div class="enfant">
+                            <button type="submit"> 
+                                <label for="userId">
+                                    <img class="logo icon" src="{{ asset('icon/loupe.png') }}" alt="loupe">
+                                </label>
+                            </button>
+                            <input type="text" id="userId" name="query" placeholder="Ville, Code postal">
+                        </div>
+                    </div>
+                </form>
+            {% endblock search %}
+        </div>
+    </section>
+    <section class="section">
+        <article class="book-detail">
+            <article class="">
+            </article>
+            <div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d11315.680982514892!2d-0.5710845672348571!3d44.84355753439826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sskateevent%20bordeaux!5e0!3m2!1sfr!2sfr!4v1653259555771!5m2!1sfr!2sfr" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </article>
+    </section>
+    <section class="section">
+        <h3 class="go"> Aller à :</h3>
+        <div class="line"></div>
+        {% for event in events %}
+            <div class="of">
+                <div class="card-t">
+                    <h1>{{ event.name }}</h1>
+                </div>
+                
+                <div class="tof">
+                    <b><img class="img-c resp" src="{{ asset('uploads/cover/'~event.coverFilename) }}" alt="photo-event"></b>
+                </div>
+                <div class="bTof" alt="banner-address">
+                    <h2>{{ event.address}} {{ event.town}}</h2>
+                </div>
+                        {#             {% if skatepark.club %} #}
+                        {#                        <h3>{{ skatepark.club.town }} {{ skatepark.club.area }}</h3> #}
+                        {#                    {% endif %} #}
+                
+                <div class="box">
+                    <div class="btn" >
+                        <a href="{{ path('event', {"id": event.id}) }}">
+                            <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir la event"><br>
+                                <h4 class="pad5">Voir la Event</h4>
+                        </a>
+                    </div>    
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock main%}

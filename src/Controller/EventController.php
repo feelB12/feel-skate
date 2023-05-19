@@ -6,86 +6,72 @@ use Twig\Environment;
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\LoaderInterface;
 
-use App\Entity\Month;
-use App\Date;
-use App\Validator;
-use App\EventValidator;
-use App\Entity\Event;
-use App\Form\EventType;
+use App\Bootsrtap;
+use App\Calendar\Month;
+use App\Calendar\Event;
+
 use App\Repository\EventRepository;
-use App\Repository\MonthRepository;
+use App\Repository\UserRepository;
+
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\String\Slugger\SluggerInterface;
-use symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
+use Symfony\Bundle\MakerBundle\MakerBundle;
+use symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+
 
 class EventController extends AbstractController
 {
-    /** renvoie l'evenement
-     * @Route("calendar/event.php", name="calendar_event", methods={"GET"})
+    /**
+     * @Route("/events", name="events")
      */
-    public function Event()
+    public function Events(EventRepository $eventRepository)
     {
-        
-        return $this->render('event.html.twig');
-
-        //return $this->redirectToRoute("calendrier");
+        $events = $eventRepository->findAll();
+        return $this->render('events.html.twig', [
+            'events' => $events
+        ]);
     }
 
-    /** ajoute un évenement
-     * @Route("calendar/add.php", name="event_add", methods={"GET","POST"})
+    /**
+     * @Route("event/{id}", name="event")
      */
-    public function AddEvent()
+    public function Event($id, EventRepository $eventRepository)
     {
-        
-        return $this->render('add_event.html.twig');
+       
+        $event = $eventRepository->find($id);
 
-        //return $this->redirectToRoute("calendrier");
+        // si l' event n'a pas été trouvé je renvoi une exception (erreur)
+        // pour afficher une erreur 404
+        if (is_null($event)){
+            return $this->render('bundles/TwigBundle/Exception/error404.html.twig', [
+                'event' => $event
+            ]);
+        }
+        $event = $eventRepository->find($id);
+        return $this->render('event.html.twig', [
+            'event' => $event
+        ]);
     }
 
-    /** edite un évènement
-     * @Route("calendar/edit.php", name="event_edit", methods={"GET","POST"})
+    /**
+     * @Route("events/search", name="search_events")
      */
-    public function EditEvent()
+    public function searchEvents(EventRepository $eventRepository, Request $request)
     {
-        
-        return $this->render('edit_event.html.twig');
+        // je récupère ce que tu l'utilisateur a recherché grâce à la classe Request
+        $word = $request->query->get('query');
 
-        //return $this->redirectToRoute("calendrier");
+        // je fais ma requête en BDD grâce à la méthode que j'ai créée searchByTitle
+        $events = $eventRepository->searchByName($word);
+
+        return $this->render('events_search.html.twig', [
+            'events' => $events
+        ]);
     }
-
-    /** Supprime un évènement
-     * @Route("calendar/delete", name="event_delete", methods={"GET"})
-     */
-    public function DeleteEvent()
-    {
-        
-        return $this->render('delete_event.html.twig');
-
-        //return $this->redirectToRoute("calendrier");
-    }
-
-    /** exporte les évènements
-     * @Route("calendar/export.php", name="event_export", methods={"GET"})
-     */
-    public function ExportEvent()
-    {
-        
-        return $this->render('export_event.html.twig');
-
-        //return $this->redirectToRoute("calendrier");
-    }
-
-    /** import les évènements
-     * @Route("calendar/import.php", name="event_import", methods={"GET"})
-     */
-    public function ImportEvent()
-    {
-        
-        return $this->render('import_event.html.twig');
-
-        //return $this->redirectToRoute("calendrier");
-    }
+    
 }

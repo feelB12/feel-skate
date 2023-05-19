@@ -1,4 +1,4 @@
-{% extends "base.html.twig" %}
+{% extends "profile/base.html.twig" %}
 
 {% block metatitle %}
     {{ event.name }} | Skateboard Social Club
@@ -17,13 +17,13 @@
     <section class="section">
         <div id="ico">
             <div class="element">
-                <a href="{{ path('events') }}">
-                    <img class="title logoBig" href="{{ path('events') }}" src="{{ asset('icon/events_titre.png') }}" alt="Shop">
+                <a href="{{ path('profile_events') }}">
+                    <img class="title logoBig" href="{{ path('profile_events') }}" src="{{ asset('icon/évènements_titre.png') }}" alt="Evènement">
                 </a>
             </div>
             <div class="element">
-                <a href="{{ path('events') }}">
-                    <img class="title logoBig" href="{{ path('events') }}" src="{{ asset('icon/event.png') }}" alt="Shop-icon">
+                <a href="{{ path('profile_events') }}">
+                    <img class="title logoBig" href="{{ path('profile_events') }}" src="{{ asset('icon/évènement.png') }}" alt="Evènement-icon">
                 </a>
             </div>
         </div>
@@ -31,7 +31,7 @@
         <div class="">
             <div class="cadre">
                 {% block search %}
-                    <form action="{{ path('search_events') }}">
+                    <form action="{{ path('profile_search_events') }}">
                         <div class="homeElement">
                             <div class="logo icon element">
                                 <label for="userId">
@@ -135,15 +135,33 @@
         <article class="detail">
             <div class="card-text">
                 <div class="box">
-                <div class="btn" >
-                        <a href="{{ path('events') }}">
-                            <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir les events"><br>
-                                <h4 class="pad5">Events</h4>
+                    <div class="btn" >
+                        <a href="{{ path('profile_events') }}">
+                            <img class="btn" src="{{ asset('icon/open-blue.png') }}" alt="Voir les évènements"><br>
+                                <h4 class="pad5">Voir</h4>
+                            </a>
+                    </div>
+                    <div class="btn">
+                        <a id="link2" class="btn" href="{{ path('profile_event_create', {"id": event.id}) }}">
+                            <img class="btn" src="{{ asset('icon/add-file-green.png') }}" alt="Créer un évènement"><br>
+                                <h4 class="pad5">Créer</h4>
+                        </a>
+                    </div>
+                    <div class="btn" >
+                        <a id="link3" class="btn" href="{{ path('profile_event_update', {"id": event.id}) }}">
+                            <img class="btn" src="{{ asset('icon/edit-pink.png') }}" alt="Modifier l'évènement"><br>
+                                <h4 class="pad5">Modifier</h4>
+                        </a>
+                    </div>
+                    <div class="btn" >
+                        <a id="link4"class="btn" href="{{ path('profile_event_delete', {"id": event.id}) }}">
+                            <img class="btn" src="{{ asset('icon/delete-orange.png') }}" alt="Supprimer l'évènement"><br>
+                                <h4 class="pad5">Supprimer</h4>
                         </a>
                     </div>
                 </div>
                 <div class="justifyBox">
-                     <p>{{ event.description }}{{ event.description }}</p>
+                        <p>{{ event.description }}{{ event.description }}</p>
                 </div>
             </div>
             <div class="card-map">

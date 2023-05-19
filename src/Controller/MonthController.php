@@ -8,7 +8,6 @@ use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\LoaderInterface;
 
 use App\Entity\Month;
-use App\Date;
 use App\Validator;
 use App\EventValidator;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -23,8 +22,15 @@ use symfony\Component\Routing\Annotation\Route;
 class MonthController extends AbstractController
 {
     /**
-     * @Route("calendar/calendar", name="calendar_month", methods={"GET"})
+     * @Route("calendar/month", name="calendar_month", methods={"GET"})
      */
+    public $days = ['Lundi','Mardi', 'Mercredi', 'Jeudi','Vendredi','Samedi', 'Dimanche'];
+
+    private $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre','Novembre','Décembre'];
+    public $month;
+    public $year;
+
+
     public function __construct(?int $month = null, ?int $year = null)
     {
 
@@ -40,7 +46,7 @@ class MonthController extends AbstractController
         $this->month = $month;
         $this->year = $year;
 
-        return $this->render('calendar/index.php', [
+        return $this->render('calendar/calendar.html.twig', [
             'month' => $month,
             'year' => $year
         ]);

@@ -19,25 +19,26 @@ class EventType extends AbstractType
             ->add('description')
             ->add('start')
             ->add('end')
-            ->add('end')
             ->add('hide')
             ->add('is_published')
-            ->add('create_at')
+            ->add('created_at')
             ->add('status')
             ->add('address')
             ->add('zippcode')
             ->add('town')
             ->add('area')
-            ->add('startAt')
-            ->add('finishedAt')
-            ->add('longitudeStartAt')
-            ->add('latitudeStartAt')
-            ->add('longitudeFinishAt')
-            ->add('latitudeFinishAt')
+            ->add('start_at')
+            ->add('finished_at')
             ->add('coverFilename', FileType::class, [
                 'mapped' => false,
                 'required' => false,
             ])
+            ->add('longitudeStart_at')
+            ->add('latitudeStart_at')
+            ->add('longitudeFinish_at')
+            ->add('latitudeFinish_at')
+            ->add('user')
+            
             ->add('valider', SubmitType::class)
         ;
     }
